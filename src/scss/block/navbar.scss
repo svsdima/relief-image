@@ -1,0 +1,69 @@
+.navbar {
+    position: relative;
+    height: 70px;
+    background: rgba(37, 73, 31, 0.31);
+    mix-blend-mode: normal;
+    backdrop-filter: blur(10px);
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+.nav {
+    &-links {
+        display: flex;
+    }
+    &-link {
+        margin-right: 80px;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+        color: $white;
+        position: relative;
+        transition: $transition;
+        &:before {
+            content: "";
+            width: 0;
+            height: 1px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: $white;
+            transition: $transition;
+        }
+        &:hover {
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+    &-text {
+        span {
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 113.19%;
+            letter-spacing: 0.03em;
+            color: $main-color;
+            position: relative;
+            &:before {
+                content: "";
+                width: 0;
+                height: 0.1em;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background: $main-color;
+                transition: $transition;
+            }
+            &:hover {
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+        i {
+            color: $main-color;
+        }
+    }
+}

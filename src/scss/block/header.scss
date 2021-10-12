@@ -1,0 +1,57 @@
+.header {
+    background: url('../img/main_bg.jpg') center (center / cover) no-repeat;
+    height: 100vh;
+    margin-top: -70px;
+    &-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-left {
+        h1 {
+            font-family: Merriweather;
+            font-weight: 300;
+            font-size: 36px;
+            line-height: 42px;
+            letter-spacing: 0.03em;
+            font-feature-settings: 'numr' on, 'dnom' on;
+            color: $white;
+            max-width: 440px;
+        }
+    }
+    .advantages {
+        position: absolute;
+        width: $container-width - 200px;
+        bottom: -45px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba($bg, 0.87);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 180px;
+        padding: 25px 100px;
+    }
+    .advantage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &-icon {
+            width: 60px;
+            height: 60px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        span {
+            margin-top: 20px;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 16px;
+            color: $main-color;
+        }
+    }
+}
