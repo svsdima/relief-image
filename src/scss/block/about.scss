@@ -1,0 +1,86 @@
+.about {
+    margin-top: 100px;
+    &-company {
+        margin: 40px 0 60px 0;
+        background: rgba($about, .98);
+        padding: 20px;
+        text-align: left;
+        h2 {
+            font-family: Merriweather;
+            font-size: 18px;
+            line-height: 23px;
+            text-transform: uppercase;
+            color: $main-color;
+            font-weight: 300;
+        }
+        p {
+            font-size: 14px;
+            line-height: 20px;
+            text-align: justify;
+            letter-spacing: 0.1em;
+            color: $main-color;
+            font-weight: 300;
+            margin: 0;
+            span {
+                color: $main-color;
+                text-transform: capitalize;
+                font-weight: 400;
+            }
+        }
+    }
+    &-projects {
+        margin-top: 40px;
+        display: grid;
+        gap: 17px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas: 
+        "first second"
+        "first third"
+        "first third"
+        ;
+    }
+    .project {
+        position: relative;
+        cursor: pointer;
+        transition: $transition;
+        &-img {
+            position: relative;
+            height: 100%;
+            img {
+            object-fit: cover;
+            height: 100%;
+            }
+            transition: $transition;
+        }
+        span {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            padding: 10px 0;
+            color: $project-text;
+            font-size: 18px;
+            line-height: 21px;
+            background: rgba($project-bg, .58);
+            text-transform: capitalize;
+            transition: $transition;
+        }
+        &:hover {
+            span {
+                background: rgba($project-bg, 1);
+            }
+        }
+    }
+    [data-id='1'] {
+        grid-area: first;
+    }
+    [data-id='2'] {
+        grid-area: second;
+    }
+    [data-id='3'] {
+        grid-area: third;
+    }
+}
