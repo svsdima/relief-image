@@ -9,7 +9,7 @@
         height: 100%;
         background: rgba($modal-bg, 0.5);
     }
-    &-project {
+    &-projects {
         position: fixed;
         left: 50%;
         top: 50%;
@@ -19,6 +19,10 @@
         background: $modal-bg;
     }
     &-content {
+        display: flex;
+        overflow: hidden;
+        // width: 100%;
+        height: 100%;
         margin: 40px 130px;
         position: relative;
     }
@@ -33,6 +37,11 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
         margin-top: 20px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
     &-main-img {
         width: 100%;
@@ -85,4 +94,23 @@
 .open {
     opacity: 1;
     z-index: 500;
+}
+.single-project {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: $transition;
+    opacity: 0;
+    &.active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    &.next {
+        transform: translateX(100%);
+    }
+    &.last {
+        transform: translateX(-100%);
+    }
 }

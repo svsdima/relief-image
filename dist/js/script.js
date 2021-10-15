@@ -90,13 +90,12 @@
 /*!*******************************!*\
   !*** ./src/js/createModal.js ***!
   \*******************************/
-/*! exports provided: singleProject, modalProject, ModalProject */
+/*! exports provided: singleProject, ModalProject */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleProject", function() { return singleProject; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalProject", function() { return modalProject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalProject", function() { return ModalProject; });
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./src/js/utils.js");
 /* harmony import */ var _data_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data.js */ "./src/js/data.js");
@@ -113,7 +112,9 @@ const singleProject = () => {
             <div class="project-img">
                 <img src=${project.img[0]}>
             </div>
-            <span>${project.name}</span>
+            <div>
+                <span>${project.name}</span>
+            </div>
         </div>
         `;
   }).join("");
@@ -122,28 +123,79 @@ const singleProject = () => {
 
 function ModalProject(element) {
   this.container = element;
-  this.list = [...element.querySelectorAll('.project')];
+  this.list = [..._data_js__WEBPACK_IMPORTED_MODULE_1__["default"]];
   this.modalProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-overlay');
   this.projectImg = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-main-img');
-  this.projectImages = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-images');
-  this.projectName = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-info-title');
+  this.projectInfo = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-content');
+  this.projectName = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.project span');
   this.projectList = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-info-list');
   this.projectPrice = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-price');
-  this.closeProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.close-btn');
-  this.nextImage = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.next-btn');
-  this.prevImage = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.prev-btn'); // container event
+  this.closeBtn = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.close-btn');
+  this.nextProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.next-btn');
+  this.prevProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.prev-btn'); // this.closeProject = this.closeProject.bind(this);
+  // container event
 
   this.container.addEventListener('click', function (e) {
-    if (e.target.classList.contains('project')) {
-      console.log(e.target, this.list);
+    if (e.target.parentElement.parentElement.classList.contains('project') || e.target.parentElement.classList.contains('project')) {
+      this.openModal(e.target, this.list);
     }
-  }.bind(this));
-  console.log(this.container);
+  }.bind(this)); // console.log(this.container)
 }
 
-ModalProject.prototype.openModal = function (selectedProject, list) {};
+ModalProject.prototype.openModal = function (selectedProject, list) {
+  // this.setMainImage(selectedProject);
+  this.projectInfo.innerHTML = list.map((project, projectIndex) => {
+    const {
+      name,
+      img,
+      list,
+      price
+    } = project;
+    let position = 'next';
 
-const modalProject = () => {};
+    if (projectIndex === 0) {
+      position = 'active';
+    }
+
+    if (projectIndex === _data_js__WEBPACK_IMPORTED_MODULE_1__["default"].length - 1) {
+      position = 'last';
+    }
+
+    return `
+            <div class="single-project ${position}">
+                <div class="line orange"><span class="line-name">${name}</span> <span class="line-full"></span></div>
+                <div class="modal-wrapper">
+                    <div class="modal-img-wrapper">
+                        <img src="${img[0]}" class="modal-main-img" alt="main-img">
+                        <div class="modal-images">
+                            <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="2" alt="main-img">
+                            <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="3" alt="main-img">
+                            <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="4" alt="main-img">
+                        </div>
+                    </div>
+                    <div class="modal-info">
+                        <h3 class="modal-info-title">Правдинское</h3>
+                        <ul class="modal-info-list">
+                            <li>Ландшафтное проектирование участка</li>
+                            <li>Планировка территории на плоскости</li>
+                            <li>Создание дренажной системы</li>
+                            <li>Устройство дорожного покрытия</li>
+                            <li>Устройство рокария</li>
+                            <li>Посадка цветника и живой изгороди</li>
+                        </ul>
+                        <p>Сумма: <span class="modal-price">400 000</span> рублей</p>
+                    </div>
+                </div>
+            </div>
+        `;
+  });
+  this.modalProject.classList.add('open'); // this.closeProject.addEventListener('click', this.closeProject);
+};
+
+ModalProject.prototype.setMainImage = function (selectedImage) {
+  this.projectImg.src = selectedImage.src;
+  this.projectName.textContent = selectedImage.title;
+};
 
 
 
@@ -187,16 +239,178 @@ const projects = [{
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _toggleSidebar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toggleSidebar.js */ "./src/js/toggleSidebar.js");
-/* harmony import */ var _createModal_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createModal.js */ "./src/js/createModal.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* harmony import */ var _toggleSidebar_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./toggleSidebar.js */ "./src/js/toggleSidebar.js");
+/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./projects */ "./src/js/projects.js");
+/* harmony import */ var _createModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createModal */ "./src/js/createModal.js");
 
 
 
-window.addEventListener('load', () => {
-  Object(_createModal_js__WEBPACK_IMPORTED_MODULE_2__["singleProject"])();
-  const DarkProject = new _createModal_js__WEBPACK_IMPORTED_MODULE_2__["ModalProject"](Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.about-projects'));
+
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  Object(_projects__WEBPACK_IMPORTED_MODULE_3__["default"])(); // projectEvent();
+  // const modal = new ModalProject(getElement('.about-projects'))
 });
+
+/***/ }),
+
+/***/ "./src/js/projects.js":
+/*!****************************!*\
+  !*** ./src/js/projects.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+
+
+
+const makingProjects = () => {
+  const projectsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.about-projects');
+  const modalContent = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-content');
+  const modalOverlay = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-overlay');
+
+  const createProject = async projects => {
+    let id = 1;
+    const project = await projects.map(project => {
+      project.id = id++;
+      return `
+                <div class="project" data-id='${project.id}'>
+                    <div class="project-img">
+                        <img src="${project.img[0]}" alt="${project.name}">
+                    </div>
+                    <div>
+                        <span>${project.name}</span>
+                    </div>
+                </div>
+            `;
+    }).join("");
+    projectsWrapper.innerHTML = project;
+  };
+
+  const modalProject = async projects => {
+    let position = 'next';
+    modalContent.innerHTML = await projects.map((project, projectIndex) => {
+      const {
+        name,
+        img,
+        list,
+        price
+      } = project;
+      position = 'next';
+
+      if (projectIndex === 0) {
+        position = 'active';
+      }
+
+      if (projectIndex === projects.length - 1) {
+        position = 'last';
+      }
+
+      return `
+                <div class="single-project ${position}">
+                    <div class="line orange"><span class="line-name">${name}</span> <span class="line-full"></span></div>
+                    <div class="modal-wrapper">
+                        <div class="modal-img-wrapper">
+                            <img src="${img[0]}" class="modal-main-img" alt="main-img">
+                            <div class="modal-images">
+                                ${img.map((image, imageIndex) => `<img src="${image}" class="modal-main-img" data-id="${imageIndex}" alt="${image}">`).join("")}
+
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <h3 class="modal-info-title">${name}</h3>
+                            <ul class="modal-info-list">
+                                ${list.map(e => `<li>${e}</li>`).join("")}
+                            </ul>
+                            <p>Сумма: <span class="modal-price">${price}</span> рублей</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+    }).join("");
+    const projectList = document.querySelectorAll('.project');
+    const modalProjectList = document.querySelectorAll('.single-project');
+    const closeBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.close-btn');
+    const nextProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.next-project-btn');
+    const prevProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.prev-project-btn');
+    const last = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.last');
+    const active = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.active');
+    await projectList.forEach((singleProject, typeBtn) => {
+      singleProject.addEventListener('click', function (e) {
+        let number = modalProjectList.forEach((project, numberIndex) => {
+          project.classList.remove('active');
+          project.classList.remove('next');
+          project.classList.remove('last');
+
+          if (e.target.parentElement.parentElement.dataset.id - 1 === numberIndex) {
+            project.classList.add('active');
+          }
+
+          console.log(`Previous element ${project.previousElementSibling}`); // next.classList.add('next');
+        });
+        modalOverlay.classList.add('open');
+      });
+    });
+
+    const sliderProject = typeBtn => {
+      let active = document.querySelector('.active');
+      let last = document.querySelector('.last');
+      let next = active.nextElementSibling;
+
+      if (!next) {
+        next = modalContent.firstElementChild;
+      }
+
+      active.classList.remove(['active']);
+      last.classList.remove(['last']);
+      next.classList.remove(['next']);
+
+      if (typeBtn === 'prev') {
+        active.classList.add('next');
+        last.classList.add('active');
+        next = last.previousElementSibling;
+
+        if (!next) {
+          next = modalContent.lastElementChild;
+        }
+
+        next.classList.remove(['next']);
+        next.classList.add('last');
+        return;
+      }
+
+      active.classList.add('last');
+      last.classList.add('next');
+      next.classList.add('active');
+    };
+
+    prevProjectBtn.addEventListener('click', () => {
+      console.log('prev');
+      sliderProject('prev');
+    });
+    nextProjectBtn.addEventListener('click', () => {
+      console.log('next');
+      sliderProject();
+    });
+    closeBtn.addEventListener('click', () => {
+      modalOverlay.classList.remove('open');
+    });
+  };
+
+  const projectEvent = () => {};
+
+  createProject(_data__WEBPACK_IMPORTED_MODULE_0__["default"]);
+  modalProject(_data__WEBPACK_IMPORTED_MODULE_0__["default"]);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (makingProjects);
 
 /***/ }),
 
@@ -212,7 +426,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./src/js/utils.js");
 
 const modalProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-overlay');
-const closeProjectBtn = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-project .close-btn');
+const closeProjectBtn = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-projects .close-btn');
 closeProjectBtn.addEventListener('click', () => {
   modalProject.classList.remove('open');
 });

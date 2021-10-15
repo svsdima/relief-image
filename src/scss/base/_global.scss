@@ -166,8 +166,8 @@ a {
         color: $main-color;
     }
 }
-.next-btn,
-.prev-btn {
+.next-project-btn,
+.prev-project-btn {
   position: absolute;
   top: 50%;
   right: -60px;
@@ -180,6 +180,6 @@ a {
     color: $main-color;
   }
 }
-.prev-btn {
+.prev-project-btn {
   left: -60px;
 }

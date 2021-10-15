@@ -1,8 +1,12 @@
+import projects from "./data";
 import { getElement } from './utils';
 import './toggleSidebar.js';
-import { singleProject, modalProject, ModalProject } from './createModal.js';
+import { createProject, modalProject, projectEvent } from './projects';
+import { singleProject, ModalProject } from './createModal';
+import makingProjects from './projects';
 
-window.addEventListener('load', () => {
-    singleProject();
-    const DarkProject = new ModalProject(getElement('.about-projects'));
+window.addEventListener('DOMContentLoaded', () => {
+    makingProjects();
+    // projectEvent();
+    // const modal = new ModalProject(getElement('.about-projects'))
 });
