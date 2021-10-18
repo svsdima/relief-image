@@ -31,8 +31,8 @@ function ModalProject(element) {
     this.projectList = getElement('.modal-info-list');
     this.projectPrice = getElement('.modal-price');
     this.closeBtn = getElement('.close-btn');
-    this.nextProject = getElement('.next-btn');
-    this.prevProject = getElement('.prev-btn');
+    this.nextProject = getElement('.next-project-btn');
+    this.prevProject = getElement('.prev-project-btn');
 
     // this.closeProject = this.closeProject.bind(this);
 
@@ -51,8 +51,9 @@ function ModalProject(element) {
 
 ModalProject.prototype.openModal = function(selectedProject, list) {
     // this.setMainImage(selectedProject);
-
+    let id = 1;
     this.projectInfo.innerHTML = list.map((project, projectIndex) => {
+        project.id = id++;
         const { name, img, list, price } = project;
         let position = 'next';
         if (projectIndex === 0) {
@@ -62,33 +63,31 @@ ModalProject.prototype.openModal = function(selectedProject, list) {
             position = 'last';
         }
         return `
-            <div class="single-project ${position}">
+            <div class="single-project ${position}" data-id='${project.id}'>
                 <div class="line orange"><span class="line-name">${name}</span> <span class="line-full"></span></div>
-                <div class="modal-wrapper">
-                    <div class="modal-img-wrapper">
-                        <img src="${img[0]}" class="modal-main-img" alt="main-img">
-                        <div class="modal-images">
-                            <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="2" alt="main-img">
-                            <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="3" alt="main-img">
-                            <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="4" alt="main-img">
-                        </div>
+                    <div class="modal-wrapper">
+                        <div class="modal-img-wrapper">
+                            <img src="${img[0]}" class="modal-main-img" alt="main-img">
+                            <div class="modal-images">
+                                ${img.map((image, imageIndex) => `
+                                <div class="modal-main-img" data-id="${imageIndex}">
+                                    <img src="${image}" alt="${image}">
+                                </div>
+                                `).join("")}
+
+                            </div>
                     </div>
                     <div class="modal-info">
-                        <h3 class="modal-info-title">Правдинское</h3>
+                        <h3 class="modal-info-title">${name}</h3>
                         <ul class="modal-info-list">
-                            <li>Ландшафтное проектирование участка</li>
-                            <li>Планировка территории на плоскости</li>
-                            <li>Создание дренажной системы</li>
-                            <li>Устройство дорожного покрытия</li>
-                            <li>Устройство рокария</li>
-                            <li>Посадка цветника и живой изгороди</li>
+                            ${list.map((e) => `<li>${e}</li>`).join("")}
                         </ul>
-                        <p>Сумма: <span class="modal-price">400 000</span> рублей</p>
+                        <p>Сумма: <span class="modal-price">${price}</span> рублей</p>
                     </div>
                 </div>
             </div>
         `;
-    })
+    }).join("")
     this.modalProject.classList.add('open');
     // this.closeProject.addEventListener('click', this.closeProject);
 }

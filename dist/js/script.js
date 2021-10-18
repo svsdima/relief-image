@@ -131,8 +131,8 @@ function ModalProject(element) {
   this.projectList = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-info-list');
   this.projectPrice = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-price');
   this.closeBtn = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.close-btn');
-  this.nextProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.next-btn');
-  this.prevProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.prev-btn'); // this.closeProject = this.closeProject.bind(this);
+  this.nextProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.next-project-btn');
+  this.prevProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.prev-project-btn'); // this.closeProject = this.closeProject.bind(this);
   // container event
 
   this.container.addEventListener('click', function (e) {
@@ -144,7 +144,9 @@ function ModalProject(element) {
 
 ModalProject.prototype.openModal = function (selectedProject, list) {
   // this.setMainImage(selectedProject);
+  let id = 1;
   this.projectInfo.innerHTML = list.map((project, projectIndex) => {
+    project.id = id++;
     const {
       name,
       img,
@@ -162,33 +164,31 @@ ModalProject.prototype.openModal = function (selectedProject, list) {
     }
 
     return `
-            <div class="single-project ${position}">
+            <div class="single-project ${position}" data-id='${project.id}'>
                 <div class="line orange"><span class="line-name">${name}</span> <span class="line-full"></span></div>
-                <div class="modal-wrapper">
-                    <div class="modal-img-wrapper">
-                        <img src="${img[0]}" class="modal-main-img" alt="main-img">
-                        <div class="modal-images">
-                            <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="2" alt="main-img">
-                            <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="3" alt="main-img">
-                            <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="4" alt="main-img">
-                        </div>
+                    <div class="modal-wrapper">
+                        <div class="modal-img-wrapper">
+                            <img src="${img[0]}" class="modal-main-img" alt="main-img">
+                            <div class="modal-images">
+                                ${img.map((image, imageIndex) => `
+                                <div class="modal-main-img" data-id="${imageIndex}">
+                                    <img src="${image}" alt="${image}">
+                                </div>
+                                `).join("")}
+
+                            </div>
                     </div>
                     <div class="modal-info">
-                        <h3 class="modal-info-title">Правдинское</h3>
+                        <h3 class="modal-info-title">${name}</h3>
                         <ul class="modal-info-list">
-                            <li>Ландшафтное проектирование участка</li>
-                            <li>Планировка территории на плоскости</li>
-                            <li>Создание дренажной системы</li>
-                            <li>Устройство дорожного покрытия</li>
-                            <li>Устройство рокария</li>
-                            <li>Посадка цветника и живой изгороди</li>
+                            ${list.map(e => `<li>${e}</li>`).join("")}
                         </ul>
-                        <p>Сумма: <span class="modal-price">400 000</span> рублей</p>
+                        <p>Сумма: <span class="modal-price">${price}</span> рублей</p>
                     </div>
                 </div>
             </div>
         `;
-  });
+  }).join("");
   this.modalProject.classList.add('open'); // this.closeProject.addEventListener('click', this.closeProject);
 };
 
@@ -252,6 +252,7 @@ __webpack_require__.r(__webpack_exports__);
 
 window.addEventListener('DOMContentLoaded', () => {
   Object(_projects__WEBPACK_IMPORTED_MODULE_3__["default"])(); // projectEvent();
+  // singleProject();
   // const modal = new ModalProject(getElement('.about-projects'))
 });
 
@@ -295,33 +296,57 @@ const makingProjects = () => {
   };
 
   const modalProject = async projects => {
-    let position = 'next';
+    let positionProject = 'next';
+    let positionImage = 'next';
+    let id = 1;
     modalContent.innerHTML = await projects.map((project, projectIndex) => {
+      project.id = id++;
       const {
         name,
         img,
         list,
         price
       } = project;
-      position = 'next';
+      positionProject = 'next';
 
       if (projectIndex === 0) {
-        position = 'active';
+        positionProject = 'active';
       }
 
       if (projectIndex === projects.length - 1) {
-        position = 'last';
+        positionProject = 'last';
       }
 
       return `
-                <div class="single-project ${position}">
+                <div class="single-project ${positionProject}" data-id=${project.id}>
                     <div class="line orange"><span class="line-name">${name}</span> <span class="line-full"></span></div>
                     <div class="modal-wrapper">
                         <div class="modal-img-wrapper">
                             <img src="${img[0]}" class="modal-main-img" alt="main-img">
                             <div class="modal-images">
-                                ${img.map((image, imageIndex) => `<img src="${image}" class="modal-main-img" data-id="${imageIndex}" alt="${image}">`).join("")}
+                                ${img.map((image, imageIndex) => {
+        positionImage = 'next';
 
+        if (imageIndex === 1) {
+          positionImage = 'active';
+        }
+
+        if (imageIndex === projects.length - 1) {
+          positionImage = 'last';
+        }
+
+        return `
+                                        <div class="modal-image ${positionImage}" data-id="${project.id}${imageIndex + 1}" >
+                                            <img src="${image}" alt="${image}">
+                                        </div>
+                                    `;
+      }).join("")}
+                                <button class="prev-image-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="next-image-btn">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="modal-info">
@@ -340,28 +365,61 @@ const makingProjects = () => {
     const closeBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.close-btn');
     const nextProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.next-project-btn');
     const prevProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.prev-project-btn');
+    const nextImageBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.next-image-btn');
+    const prevImageBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.prev-image-btn');
     const last = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.last');
     const active = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.active');
-    await projectList.forEach((singleProject, typeBtn) => {
-      singleProject.addEventListener('click', function (e) {
-        let number = modalProjectList.forEach((project, numberIndex) => {
+    const modalImages = document.querySelectorAll('.modal-images');
+    const modalImage = document.querySelectorAll('.modal-image');
+    const modalMainImg = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-main-img');
+    await projectList.forEach(async singleProject => {
+      await singleProject.addEventListener('click', function (e) {
+        modalProjectList.forEach(project => {
           project.classList.remove('active');
           project.classList.remove('next');
           project.classList.remove('last');
 
-          if (e.target.parentElement.parentElement.dataset.id - 1 === numberIndex) {
+          if (e.target.parentElement.parentElement.dataset.id === project.dataset.id) {
+            console.log(project.dataset.id);
+            modalOverlay.classList.add('open');
             project.classList.add('active');
           }
 
-          console.log(`Previous element ${project.previousElementSibling}`); // next.classList.add('next');
+          if (e.target.parentElement.parentElement.dataset.id == 1) {
+            modalContent.lastElementChild.classList.add('last');
+          }
+
+          if (e.target.parentElement.parentElement.dataset.id > 1 && e.target.parentElement.parentElement.dataset.id === project.dataset.id) {
+            project.previousElementSibling.classList.add('last');
+          }
         });
-        modalOverlay.classList.add('open');
+      });
+    });
+    modalImages.forEach(images => {
+      if (images.classList.contains('active')) {
+        let img = [...images.getElementsByClassName('modal-image')];
+        img.forEach(image => {
+          if (image.classList.contains('active')) {
+            console.log(modalMainImg.src, image.firstElementChild.src);
+            modalMainImg.src = image.firstElementChild.src;
+            console.log(modalMainImg.src, image.firstElementChild.src);
+          }
+        });
+      }
+
+      if (images.classList.add('active')) {
+        console.log(nextImageBtn);
+      }
+
+      nextImageBtn.addEventListener('click', () => {
+        console.log(nextImageBtn);
+        console.log('modal-image');
       });
     });
 
-    const sliderProject = typeBtn => {
-      let active = document.querySelector('.active');
-      let last = document.querySelector('.last');
+    const sliderProject = (mainClass, typeBtn) => {
+      let active = document.querySelector(`${mainClass}.active`);
+      let last = document.querySelector(`${mainClass}.last`);
       let next = active.nextElementSibling;
 
       if (!next) {
@@ -392,12 +450,10 @@ const makingProjects = () => {
     };
 
     prevProjectBtn.addEventListener('click', () => {
-      console.log('prev');
-      sliderProject('prev');
+      sliderProject('.single-project', 'prev');
     });
     nextProjectBtn.addEventListener('click', () => {
-      console.log('next');
-      sliderProject();
+      sliderProject('.single-project');
     });
     closeBtn.addEventListener('click', () => {
       modalOverlay.classList.remove('open');

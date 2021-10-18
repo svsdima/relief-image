@@ -137,6 +137,7 @@ a {
     }
 }
 .orange {
+    margin-top: 20px;
     .line-name {
         color: $main-color;
     }
@@ -149,6 +150,7 @@ a {
     .line-full {
         background: $main-color;
         &::before {
+            bottom: -4px;
             content: url('/img/logo-line-orange.svg');
         }
     }
@@ -160,7 +162,7 @@ a {
     background: transparent;
     border-color: transparent;
     cursor: pointer;
-    padding: 5px;
+    padding: 10px;
     i {
         font-size: 25px;
         color: $main-color;
@@ -168,18 +170,40 @@ a {
 }
 .next-project-btn,
 .prev-project-btn {
-  position: absolute;
-  top: 50%;
-  right: -60px;
-  transform: translateY(-50%);
-  background: transparent;
-  border-color: transparent;
-  cursor: pointer;
-  i {
-    font-size: 25px;
-    color: $main-color;
-  }
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    padding: 10px;
+    i {
+        font-size: 50px;
+        color: $main-color;
+    }
 }
 .prev-project-btn {
-  left: -60px;
+    left: 0;
+}
+.next-image-btn,
+.prev-image-btn {
+    z-index: 550;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    padding: 10px;
+    i {
+        font-size: 35px;
+        color: $main-color;
+    }
+}
+.prev-image-btn {
+    left: -50px;
+}
+.next-image-btn {
+    right: -50px;
 }

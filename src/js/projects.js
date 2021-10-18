@@ -26,27 +26,47 @@ const makingProjects = () => {
     }
 
     const modalProject = async (projects) => {
-        let position = 'next';
-
+        let positionProject = 'next';
+        let positionImage = 'next';
+        let id = 1;
 
         modalContent.innerHTML = await projects.map((project, projectIndex) => {
+            project.id = id++;
             const { name, img, list, price } = project;
-            position = 'next';
+            positionProject = 'next';
             if (projectIndex === 0) {
-                position = 'active';
+                positionProject = 'active';
             }
             if (projectIndex === projects.length - 1) {
-                position = 'last';
+                positionProject = 'last';
             }
             return `
-                <div class="single-project ${position}">
+                <div class="single-project ${positionProject}" data-id=${project.id}>
                     <div class="line orange"><span class="line-name">${name}</span> <span class="line-full"></span></div>
                     <div class="modal-wrapper">
                         <div class="modal-img-wrapper">
                             <img src="${img[0]}" class="modal-main-img" alt="main-img">
                             <div class="modal-images">
-                                ${img.map((image, imageIndex) => `<img src="${image}" class="modal-main-img" data-id="${imageIndex}" alt="${image}">`).join("")}
-
+                                ${img.map((image, imageIndex) => {
+                                    positionImage = 'next';
+                                    if (imageIndex === 1) {
+                                        positionImage = 'active';
+                                    }
+                                    if (imageIndex === projects.length - 1) {
+                                        positionImage = 'last';
+                                    }
+                                    return `
+                                        <div class="modal-image ${positionImage}" data-id="${project.id}${imageIndex + 1}" >
+                                            <img src="${image}" alt="${image}">
+                                        </div>
+                                    `;
+                                }).join("")}
+                                <button class="prev-image-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="next-image-btn">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="modal-info">
@@ -66,29 +86,58 @@ const makingProjects = () => {
         const closeBtn = getElement('.close-btn');
         const nextProjectBtn = getElement('.next-project-btn');
         const prevProjectBtn = getElement('.prev-project-btn');
+        const nextImageBtn = getElement('.next-image-btn');
+        const prevImageBtn = getElement('.prev-image-btn');
         const last = getElement('.last');
         const active = getElement('.active');
+        const modalImages= document.querySelectorAll('.modal-images');
+        const modalImage = document.querySelectorAll('.modal-image');
+        const modalMainImg = getElement('.modal-main-img');
 
-        await projectList.forEach((singleProject, typeBtn) => {
-            singleProject.addEventListener('click', function(e) {
-                let number = modalProjectList.forEach((project, numberIndex) => {
+        await projectList.forEach(async (singleProject) => {
+            await singleProject.addEventListener('click', function(e) {
+                modalProjectList.forEach((project) => {
                         project.classList.remove('active');
                         project.classList.remove('next');
                         project.classList.remove('last');
-                    if (e.target.parentElement.parentElement.dataset.id - 1 === numberIndex) {
+                    if (e.target.parentElement.parentElement.dataset.id === project.dataset.id) {
+                        console.log(project.dataset.id)
+                        modalOverlay.classList.add('open');
                         project.classList.add('active');
                     }
-
-                    console.log(`Previous element ${project.previousElementSibling}`)
-                    // next.classList.add('next');
+                    if (e.target.parentElement.parentElement.dataset.id == 1) {
+                        modalContent.lastElementChild.classList.add('last')
+                    }
+                    if (e.target.parentElement.parentElement.dataset.id > 1 && e.target.parentElement.parentElement.dataset.id === project.dataset.id) {
+                        project.previousElementSibling.classList.add('last');
+                    }
                 });
-                modalOverlay.classList.add('open');
             });
         });
 
-        const sliderProject = (typeBtn) => {
-            let active = document.querySelector('.active');
-            let last = document.querySelector('.last');
+        modalImages.forEach((images) => {
+            if (images.classList.contains('active')) {
+                let img = [...images.getElementsByClassName('modal-image')];
+                img.forEach((image) => {
+                    if (image.classList.contains('active')) {
+                        console.log(modalMainImg.src, image.firstElementChild.src);
+                        modalMainImg.src = image.firstElementChild.src
+                        console.log(modalMainImg.src, image.firstElementChild.src);
+                    }
+                })
+            }
+            if (images.classList.add('active')) {
+                console.log(nextImageBtn)
+            }
+            nextImageBtn.addEventListener('click', () => {
+                console.log(nextImageBtn);
+                console.log('modal-image');
+            });
+        });
+
+        const sliderProject = (mainClass, typeBtn) => {
+            let active = document.querySelector(`${mainClass}.active`);
+            let last = document.querySelector(`${mainClass}.last`);
             let next = active.nextElementSibling;
             if (!next) {
                 next = modalContent.firstElementChild;
@@ -114,13 +163,11 @@ const makingProjects = () => {
         }
 
         prevProjectBtn.addEventListener('click', () => {
-            console.log('prev')
-            sliderProject('prev')
-        })
+            sliderProject('.single-project', 'prev')
+        });
         nextProjectBtn.addEventListener('click', () => {
-            console.log('next')
-            sliderProject()
-        })
+            sliderProject('.single-project')
+        });
 
 
         closeBtn.addEventListener('click', () => {

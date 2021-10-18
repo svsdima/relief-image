@@ -8,5 +8,6 @@ import makingProjects from './projects';
 window.addEventListener('DOMContentLoaded', () => {
     makingProjects();
     // projectEvent();
+    // singleProject();
     // const modal = new ModalProject(getElement('.about-projects'))
 });
