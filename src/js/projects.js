@@ -1,4 +1,5 @@
 import projects from "./data";
+import { onScroll, offScroll } from "./scroll";
 import { getElement } from "./utils";
 
 
@@ -6,7 +7,6 @@ const makingProjects = () => {
     const projectsWrapper = getElement('.about-projects');
     const modalContent = getElement('.modal-content');
     const modalOverlay = getElement('.modal-overlay');
-
     const createProject = async (projects) => {
         let id = 1;
         const project = await projects.map((project) => {
@@ -96,6 +96,7 @@ const makingProjects = () => {
 
         await projectList.forEach(async (singleProject) => {
             await singleProject.addEventListener('click', function(e) {
+                offScroll();
                 modalProjectList.forEach((project) => {
                         project.classList.remove('active');
                         project.classList.remove('next');
@@ -172,6 +173,7 @@ const makingProjects = () => {
 
         closeBtn.addEventListener('click', () => {
             modalOverlay.classList.remove('open');
+            onScroll();
         });
     };
 

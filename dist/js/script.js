@@ -244,6 +244,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _toggleSidebar_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./toggleSidebar.js */ "./src/js/toggleSidebar.js");
 /* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./projects */ "./src/js/projects.js");
 /* harmony import */ var _createModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createModal */ "./src/js/createModal.js");
+/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
+
 
 
 
@@ -251,6 +253,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', () => {
+  Object(_scroll__WEBPACK_IMPORTED_MODULE_5__["scroll"])();
   Object(_projects__WEBPACK_IMPORTED_MODULE_3__["default"])(); // projectEvent();
   // singleProject();
   // const modal = new ModalProject(getElement('.about-projects'))
@@ -260,75 +263,18 @@ window.addEventListener('DOMContentLoaded', () => {
   const openPopup = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.btn-popup');
   const popup = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.popup');
   const closePopup = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.popup-wrapper .close-btn');
+  popup.addEventListener('click', e => {
+    if (e.target === popup) {
+      popup.classList.remove('open');
+    }
+  });
   openPopup.addEventListener('click', () => {
     popup.classList.add('open');
+    Object(_scroll__WEBPACK_IMPORTED_MODULE_5__["offScroll"])();
   });
   closePopup.addEventListener('click', () => {
     popup.classList.remove('open');
-  });
-  /* Scroll */
-
-  const navbar = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.navbar');
-  const linksContainer = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.links-container');
-  const links = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.nav-links');
-  const topLink = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.top-link');
-  const navToggle = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.nav-toggle');
-  const header = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.header');
-  navToggle.addEventListener('click', () => {
-    const containerHeight = linksContainer.getBoundingClientRect().height;
-    const linksHeight = links.getBoundingClientRect().height;
-
-    if (containerHeight === 0) {
-      linksContainer.style.height = `${linksHeight}px`;
-    } else {
-      linksContainer.style.height = 0;
-    }
-  }); // ***Fixed navbar***
-
-  window.addEventListener('scroll', () => {
-    const scrollHeight = window.pageYOffset;
-    const navHeight = navbar.getBoundingClientRect().height;
-
-    if (scrollHeight > navHeight) {
-      navbar.classList.add('fixed-nav');
-    } else {
-      navbar.classList.remove('fixed-nav');
-    }
-
-    if (scrollHeight > 600) {
-      topLink.classList.add('show-link');
-      header.style.paddingTop = `${navHeight}px`;
-    } else {
-      topLink.classList.remove('show-link');
-    }
-  }); // ***Smoth Scroll***
-
-  const scrollLinks = document.querySelectorAll('.nav-link');
-  scrollLinks.forEach(link => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault(); // navigate to specific spot
-
-      const id = e.currentTarget.getAttribute('href').slice(1);
-      const element = document.getElementById(id); // calculate the hights
-
-      const navHeight = navbar.getBoundingClientRect().height;
-      const containerHeight = linksContainer.getBoundingClientRect().height;
-      const fixedNav = navbar.classList.contains('fixed-nav');
-      let position = element.offsetTop - navHeight;
-
-      if (!fixedNav) {
-        position = position - navHeight;
-      }
-
-      if (navHeight > 82) {
-        position = position + containerHeight;
-      }
-
-      window.scrollTo({
-        left: 0,
-        top: position
-      }); // linksContainer.style.height = 0;
-    });
+    Object(_scroll__WEBPACK_IMPORTED_MODULE_5__["onScroll"])();
   });
 });
 
@@ -344,14 +290,16 @@ window.addEventListener('DOMContentLoaded', () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+
 
 
 
 const makingProjects = () => {
-  const projectsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.about-projects');
-  const modalContent = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-content');
-  const modalOverlay = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-overlay');
+  const projectsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.about-projects');
+  const modalContent = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-content');
+  const modalOverlay = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-overlay');
 
   const createProject = async projects => {
     let id = 1;
@@ -438,18 +386,19 @@ const makingProjects = () => {
     }).join("");
     const projectList = document.querySelectorAll('.project');
     const modalProjectList = document.querySelectorAll('.single-project');
-    const closeBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-overlay .close-btn');
-    const nextProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.next-project-btn');
-    const prevProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.prev-project-btn');
-    const nextImageBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.next-image-btn');
-    const prevImageBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.prev-image-btn');
-    const last = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.last');
-    const active = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.active');
+    const closeBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-overlay .close-btn');
+    const nextProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.next-project-btn');
+    const prevProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.prev-project-btn');
+    const nextImageBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.next-image-btn');
+    const prevImageBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.prev-image-btn');
+    const last = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.last');
+    const active = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.active');
     const modalImages = document.querySelectorAll('.modal-images');
     const modalImage = document.querySelectorAll('.modal-image');
-    const modalMainImg = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-main-img');
+    const modalMainImg = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-main-img');
     await projectList.forEach(async singleProject => {
       await singleProject.addEventListener('click', function (e) {
+        Object(_scroll__WEBPACK_IMPORTED_MODULE_1__["offScroll"])();
         modalProjectList.forEach(project => {
           project.classList.remove('active');
           project.classList.remove('next');
@@ -533,6 +482,7 @@ const makingProjects = () => {
     });
     closeBtn.addEventListener('click', () => {
       modalOverlay.classList.remove('open');
+      Object(_scroll__WEBPACK_IMPORTED_MODULE_1__["onScroll"])();
     });
   };
 
@@ -543,6 +493,115 @@ const makingProjects = () => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (makingProjects);
+
+/***/ }),
+
+/***/ "./src/js/scroll.js":
+/*!**************************!*\
+  !*** ./src/js/scroll.js ***!
+  \**************************/
+/*! exports provided: scroll, offScroll, onScroll */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scroll", function() { return scroll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "offScroll", function() { return offScroll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onScroll", function() { return onScroll; });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+
+
+const scroll = () => {
+  /* Scroll */
+  const navbar = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.navbar');
+  const linksContainer = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.links-container');
+  const links = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.nav-links');
+  const topLink = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.top-link');
+  const navToggle = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.nav-toggle');
+  const header = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.header');
+  navToggle.addEventListener('click', () => {
+    const containerHeight = linksContainer.getBoundingClientRect().height;
+    const linksHeight = links.getBoundingClientRect().height;
+
+    if (containerHeight === 0) {
+      linksContainer.style.height = `${linksHeight}px`;
+    } else {
+      linksContainer.style.height = 0;
+    }
+  }); // ***Fixed navbar***
+
+  window.addEventListener('scroll', () => {
+    const scrollHeight = window.pageYOffset;
+    const navHeight = navbar.getBoundingClientRect().height;
+
+    if (scrollHeight > navHeight) {
+      navbar.classList.add('fixed-nav');
+    } else {
+      navbar.classList.remove('fixed-nav');
+    }
+
+    if (scrollHeight > 600) {
+      topLink.classList.add('show-link');
+      header.style.paddingTop = `${navHeight}px`;
+    } else {
+      topLink.classList.remove('show-link');
+    }
+  }); // ***Smoth Scroll***
+
+  const scrollLinks = document.querySelectorAll('.nav-link');
+  scrollLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault(); // navigate to specific spot
+
+      const id = e.currentTarget.getAttribute('href').slice(1);
+      const element = document.getElementById(id); // calculate the hights
+
+      const navHeight = navbar.getBoundingClientRect().height;
+      const containerHeight = linksContainer.getBoundingClientRect().height;
+      const fixedNav = navbar.classList.contains('fixed-nav');
+      let position = element.offsetTop - navHeight;
+
+      if (!fixedNav) {
+        position = position - navHeight;
+      }
+
+      if (navHeight > 82) {
+        position = position + containerHeight;
+      }
+
+      window.scrollTo({
+        left: 0,
+        top: position
+      }); // linksContainer.style.height = 0;
+    });
+  });
+};
+
+const offScroll = () => {
+  document.body.style.overflow = "hidden";
+  document.body.style.marginRight = `${calcScroll()}px`;
+};
+
+const onScroll = () => {
+  document.body.style.overflow = "";
+  document.body.style.marginRight = `0px`;
+};
+
+const calcScroll = () => {
+  let div = document.createElement('div');
+  div.style.width = '50px';
+  div.style.height = '50px';
+  div.style.overflowY = 'scroll';
+  div.style.visibility = 'hidden';
+  document.body.appendChild(div);
+  /* Вычисляем размер прокрутки */
+
+  let scrollWidth = div.offsetWidth - div.clientWidth;
+  div.remove();
+  return scrollWidth;
+};
+
+
 
 /***/ }),
 
