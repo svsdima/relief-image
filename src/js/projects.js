@@ -83,7 +83,7 @@ const makingProjects = () => {
 
         const projectList = document.querySelectorAll('.project');
         const modalProjectList = document.querySelectorAll('.single-project');
-        const closeBtn = getElement('.close-btn');
+        const closeBtn = getElement('.modal-overlay .close-btn');
         const nextProjectBtn = getElement('.next-project-btn');
         const prevProjectBtn = getElement('.prev-project-btn');
         const nextImageBtn = getElement('.next-image-btn');

@@ -17,24 +17,29 @@
     <!-- navbar -->
     <nav class="navbar">
         <div class="container">
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
             <!-- links -->
-            <ul class="nav-links">
-                <li>
-                    <a href="#" class="nav-link">О Компании</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link">Проекты</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link">Уход за садом</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link">Ландшафт</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link">Отзывы</a>
-                </li>
-            </ul>
+            <div class="links-container">
+                <ul class="nav-links">
+                    <li>
+                        <a href="#about" class="nav-link">О Компании</a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="nav-link">Проекты</a>
+                    </li>
+                    <li>
+                        <a href="#care" class="nav-link">Уход за садом</a>
+                    </li>
+                    <li>
+                        <a href="#landscape" class="nav-link">Ландшафт</a>
+                    </li>
+                    <li>
+                        <a href="#reviews" class="nav-link">Отзывы</a>
+                    </li>
+                </ul>
+            </div>
             <ul class="nav-info">
                 <li>
                     <a href="tel:+7981985004" class="nav-text">
@@ -53,7 +58,7 @@
     </nav>
     <div class="wrapper">
         <!-- header -->
-        <header class="header">
+        <header class="header" id="header">
             <div class="container">
                 <div class="logo">
                     <img src="./img/logo.svg" alt="logo">
@@ -61,7 +66,7 @@
                 <div class="header-wrapper">
                     <aside class="header-left">                    
                         <h1>Благоустройство и озеленение участков</h1>
-                        <button class="btn">Оставить заявку</button>
+                        <button class="btn btn-popup">Оставить заявку</button>
                     </aside>
                     <aside class="social">
                         <a href="#" class="social-icon">
@@ -78,37 +83,57 @@
                 <section class="advantages">
                     <div class="advantage">
                         <div class="advantage-icon">
-                            <img src="./img/icons/header_1.svg"  alt="icon-1">
+                            <img src="./img/icons/header-1.svg"  alt="icon-1">
                         </div>
                         <span>Опыт работы более 10 лет</span>
                     </div>
                     <div class="advantage">
                         <div class="advantage-icon">
-                            <img src="./img/icons/header_2.svg"  alt="icon-2">
+                            <img src="./img/icons/header-2.svg"  alt="icon-2">
                         </div>
                         <span>Гарантия на растения</span>
                     </div>
                     <div class="advantage">
                         <div class="advantage-icon">
-                            <img src="./img/icons/header_3.svg"  alt="icon-3">
+                            <img src="./img/icons/header-3.svg"  alt="icon-3">
                         </div>
                         <span>Лучшие питомники</span>
                     </div>
                 </section>
             </div>
-            <section class="popup">
-                <div class="container">
-                    <div class="popup-wrapper">
-                        <div class="popup-logo">
-                            <img src="./img/logo.svg" alt="logo">
-                        </div>
-                        <form action="" class="popup-form"></form>
+            <!-- popup -->
+            <article class="popup">
+                <div class="popup-wrapper">
+                    <button class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="popup-logo">
+                        <img src="./img/logo.svg" alt="logo">
                     </div>
+                    <form action="#" id="popup-form" class="popup-form">
+                        <div class="popup-title">Получить консультацию специалиста</div>
+                        <div class="popup-form-wrapper">
+                            <div class="popup-item">
+                                <input id="formName" type="text" name="name" class="popup-input" placeholder="Имя*" />
+                            </div>
+                            <div class="popup-item">
+                                <input id="formPhone" type="tel" name="phone" class="popup-input" placeholder="Телефон*" />
+                            </div>
+                            <div class="checkbox">
+                                <input id="formAgreement" type="checkbox" name="agreement" class="checkbox-input" />
+                                <label htmlFor="formAgreement" class="checkbox-label" >
+                                    Согласен с <a href="#">политикой конфиденциальности</a>
+                                </label>
+                                <button type="submit" class="btn btn-form">Отправить</button>
+                            </div>
+                            
+                        </div>
+                    </form>
                 </div>
-            </section>
+            </article>
         </header>
         <main class="main">
-            <section class="about">
+            <section class="about" id="about">
                 <div class="container">
                     <!-- about company -->
                 <div class="line green"><span class="line-center"></span></div>
@@ -127,10 +152,10 @@
                 </article>
                 <!-- projects -->
                 <div class="line green"><span class="line-name">Наши проекты</span> <span class="line-full"></span></div>
-                <article class="about-projects">
+                <article class="about-projects" id="projects">
                     <div class="project first">
                         <div class="project-img">
-                            <img src="./img/projects/pravdinsk/1.jpg" alt="pravdinsk">
+                            <img src="img/projects/pravdinsk/1.jpg" alt="pravdinsk">
                         </div>
                         <div>
                             <span>Правдинское</span>
@@ -138,13 +163,13 @@
                     </div>
                     <div class="project second">
                         <div class="project-img">
-                            <img src="./img/projects/pravdinsk/1.jpg" alt="pravdinsk">
+                            <img src="img/projects/pravdinsk/1.jpg" alt="pravdinsk">
                         </div>
                         <span>Правдинское</span>
                     </div>
                     <div class="project third">
                         <div class="project-img">
-                            <img src="./img/projects/pravdinsk/1.jpg" alt="pravdinsk">
+                            <img src="img/projects/pravdinsk/1.jpg" alt="pravdinsk">
                         </div>
                         <span>Правдинское</span>
                     </div>
@@ -204,6 +229,11 @@
 
         </footer>
     </div>
+
+    <!-- back to top button -->
+    <a href="#header" class="nav-link top-link">
+        <i class="fas fa-arrow-up"></i>
+    </a>
     <script src="./js/script.js"></script>
 </body>
 </html>

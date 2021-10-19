@@ -4,6 +4,9 @@
   line-height: 20px;
   color: #000; }
 
+html {
+  scroll-behavior: smooth; }
+
 body {
   height: 100%; }
 
@@ -46,6 +49,13 @@ a {
   .btn:hover {
     background: #ff7e35;
     color: #fff; }
+
+.btn-form {
+  margin-top: 0;
+  padding: 4px 12px;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 16px; }
 
 .logo {
   padding-top: 120px;
@@ -136,7 +146,7 @@ a {
       bottom: -4px;
       content: url("/img/logo-line-orange.svg"); }
 
-.close-btn {
+.modal-overlay .close-btn {
   position: absolute;
   top: 25px;
   right: 25px;
@@ -144,7 +154,19 @@ a {
   border-color: transparent;
   cursor: pointer;
   padding: 10px; }
-  .close-btn i {
+  .modal-overlay .close-btn i {
+    font-size: 25px;
+    color: #FFDF9E; }
+
+.popup .close-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  padding: 10px; }
+  .popup .close-btn i {
     font-size: 25px;
     color: #FFDF9E; }
 
@@ -3731,14 +3753,25 @@ template {
 
 .navbar {
   position: relative;
-  height: 70px;
+  z-index: 5;
   background: rgba(37, 73, 31, 0.31);
   mix-blend-mode: normal;
-  backdrop-filter: blur(10px); }
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease-in; }
   .navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center; }
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border-color: transparent;
+  transition: all 0.2s ease-in;
+  cursor: pointer; }
+  .nav-toggle i {
+    color: #FFDF9E;
+    font-size: 20px; }
 
 .nav-links {
   display: flex; }
@@ -3784,6 +3817,44 @@ template {
 
 .nav-text i {
   color: #FFDF9E; }
+
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #25491f;
+  box-shadow: var(--light-shadow); }
+
+.top-link {
+  margin: 0;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(33, 26, 21, 0.5);
+  min-width: 20px;
+  min-height: 20px;
+  padding: 5px;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease-in;
+  opacity: 0;
+  z-index: -100; }
+  .top-link i {
+    font-size: 30px;
+    color: rgba(255, 223, 158, 0.5);
+    transition: all 0.2s ease-in; }
+  .top-link:hover {
+    background: #211a15; }
+    .top-link:hover i {
+      color: #ffdf9e; }
+
+.show-links {
+  height: 200px; }
+
+.show-link {
+  opacity: 1;
+  z-index: 100; }
 
 .header {
   background: url("../img/main_bg.jpg") center center/cover no-repeat;
@@ -3911,7 +3982,8 @@ template {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(80, 75, 71, 0.5); }
+  background: rgba(80, 75, 71, 0.5);
+  transition: all 0.2s ease-in; }
 
 .modal-projects {
   position: fixed;
@@ -3932,7 +4004,8 @@ template {
   column-gap: 80px;
   margin-top: 50px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); }
+  grid-template-columns: repeat(2, 1fr);
+  padding-left: 40px; }
 
 .modal-images {
   display: grid;
@@ -4018,3 +4091,80 @@ template {
     transform: translateX(100%); }
   .single-project.last {
     transform: translateX(-100%); }
+
+.popup {
+  z-index: -10;
+  opacity: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.2s ease-in; }
+  .popup.open {
+    z-index: 500;
+    opacity: 1; }
+  .popup-wrapper {
+    position: absolute;
+    width: 80%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #211A15; }
+  .popup-logo {
+    width: 100%;
+    height: 100%;
+    background-color: #524425;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .popup-logo img {
+      width: 100%;
+      object-fit: cover; }
+  .popup-title {
+    font-size: 18px;
+    line-height: 21px;
+    color: #FFDF9E;
+    margin-bottom: 50px; }
+  .popup-item {
+    padding-bottom: 20px; }
+    .popup-item input {
+      padding: 5px 20px;
+      min-height: 30px;
+      width: 90%; }
+  .popup-form {
+    padding: 40px 50px; }
+
+.checkbox {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  justify-content: center;
+  column-gap: 10px;
+  align-items: center; }
+  .checkbox-label {
+    font-size: 15px;
+    line-height: 15px;
+    color: #fff; }
+    .checkbox-label a {
+      font-size: 15px;
+      color: #FFDF9E;
+      transition: all 0.2s ease-in;
+      position: relative; }
+      .checkbox-label a:before {
+        content: "";
+        width: 0;
+        height: 1px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #FFDF9E;
+        transition: all 0.2s ease-in; }
+      .checkbox-label a:hover:before {
+        width: 100%; }

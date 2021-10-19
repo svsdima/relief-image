@@ -8,6 +8,7 @@
         width: 100%;
         height: 100%;
         background: rgba($modal-bg, 0.5);
+        transition: $transition;
     }
     &-projects {
         position: fixed;
@@ -29,6 +30,7 @@
         margin-top: 50px;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        padding-left: 40px;
     }
     &-images {
         display: grid;

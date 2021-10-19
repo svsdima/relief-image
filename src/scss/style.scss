@@ -1,5 +1,7 @@
 $main-color: #FFDF9E;
 $bg: #211A15;
+$bg-popup-logo: #524425;
+$bg-navbar: #25491f;
 $btn: #FF7E35;
 $white: #fff;
 $black: #000;
@@ -22,3 +24,4 @@ $transition: all 0.2s ease-in;
 @import './block/about';
 @import './block/garden';
 @import './block/modal';
+@import './block/popup';

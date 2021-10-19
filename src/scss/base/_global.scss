@@ -4,6 +4,9 @@
     line-height: 20px;
     color: #000;
 }
+html {
+    scroll-behavior: smooth;
+}
 body {
     height: 100%;
 }
@@ -47,6 +50,13 @@ a {
         background: rgba($btn, 1);
         color: $white;
     }
+}
+.btn-form {
+    margin-top: 0;
+    padding: 4px 12px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 16px;
 }
 .logo {
     padding-top: 120px;
@@ -155,7 +165,20 @@ a {
         }
     }
 }
-.close-btn {
+.modal-overlay .close-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    padding: 10px;
+    i {
+        font-size: 25px;
+        color: $main-color;
+    }
+}
+.popup .close-btn {
     position: absolute;
     top: 25px;
     right: 25px;
