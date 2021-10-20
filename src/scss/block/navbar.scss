@@ -106,6 +106,9 @@
     }
     opacity: 0;
     z-index: -100;
+    &::before {
+        display: none;
+    }
     &:hover {
         background: rgba($bg, 1);
         i {

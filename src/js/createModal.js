@@ -1,5 +1,5 @@
 import { getElement } from "./utils.js";
-import projects from "./data.js";
+import { projects } from "../data.js";
 
 const projectWrapper = document.querySelector('.about-projects');
 

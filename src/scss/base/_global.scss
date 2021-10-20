@@ -94,6 +94,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    padding-top: 20px;
     &-name {
         white-space: nowrap;
         font-family: Merriweather;
@@ -120,7 +121,7 @@ a {
         width: 100%;
         height: 1px;
         &::before {
-            content: url('/img/logo-line.svg');
+            content: url('../img/logo-line.svg');
             width: 40px;
             height: 40px;
             position: absolute;
@@ -136,13 +137,13 @@ a {
     .line-center {
         background: $line;
         &::before {
-            content: url('/img/logo-line-green.svg');
+            content: url('../img/logo-line-green.svg');
         }
     }
     .line-full {
         background: $line;
         &::before {
-            content: url('/img/logo-line-green.svg');
+            content: url('../img/logo-line-green.svg');
         }
     }
 }
@@ -154,14 +155,14 @@ a {
     .line-center {
         background: $main-color;
         &::before {
-            content: url('/img/logo-line-orange.svg');
+            content: url('../img/logo-line-orange.svg');
         }
     }
     .line-full {
         background: $main-color;
         &::before {
             bottom: -4px;
-            content: url('/img/logo-line-orange.svg');
+            content: url('../img/logo-line-orange.svg');
         }
     }
 }
@@ -229,4 +230,35 @@ a {
 }
 .next-image-btn {
     right: -50px;
+}
+.section-descr {
+    margin: 40px 0;
+    background: rgba($descr, .98);
+    padding: 20px;
+    text-align: left;
+    h2 {
+        font-family: Merriweather;
+        font-size: 18px;
+        line-height: 23px;
+        text-transform: uppercase;
+        color: $main-color;
+        font-weight: 300;
+    }
+    p {
+        font-size: 14px;
+        line-height: 20px;
+        text-align: justify;
+        letter-spacing: 0.1em;
+        color: $main-color;
+        font-weight: 300;
+        margin: 0;
+        span {
+            color: $main-color;
+            text-transform: capitalize;
+            font-weight: 400;
+        }
+    }
+    &.transparent {
+        background: rgba($descr-2, .8);
+    }
 }

@@ -1,4 +1,4 @@
-import projects from "./data";
+import { projects } from "../data";
 import { onScroll, offScroll } from "./scroll";
 import { getElement } from "./utils";
 

@@ -86,6 +86,86 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/data.js":
+/*!*********************!*\
+  !*** ./src/data.js ***!
+  \*********************/
+/*! exports provided: projects, tabs, landscape */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projects", function() { return projects; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tabs", function() { return tabs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "landscape", function() { return landscape; });
+const projects = [{
+  name: 'Правдинское',
+  img: ['img/projects/pravdinsk/1.jpg', 'img/projects/pravdinsk/2.jpg', 'img/projects/pravdinsk/3.jpg', 'img/projects/pravdinsk/4.jpg'],
+  list: ['Черновая планировка и уборка мусора', 'Планировка территории на плоскости', 'Устройство рокария', 'Посадка плодовых и ягодных деревьев и кустарников', 'Подготовка участка под рулонный газон', 'Отсевная площадка под грядки', 'Устройство экопарковки', 'Установка грядок', 'Установка теплицы', 'Укладка рулонного газона'],
+  price: '1 400 000'
+}, {
+  name: 'Петергоф',
+  img: ['img/projects/petergof/1.jpg', 'img/projects/petergof/2.jpg', 'img/projects/petergof/3.jpg', 'img/projects/petergof/4.jpg'],
+  list: ['Обустройство и укрепление дренажной канавы', 'Посадка растений', 'Укладка рулонного газона'],
+  price: '185 000'
+}, {
+  name: 'Репино',
+  img: ['img/projects/repino/1.jpg', 'img/projects/repino/2.jpg', 'img/projects/repino/3.jpg', 'img/projects/repino/4.jpg'],
+  list: ['Ландшафтное проектирование участка', 'Планировка территории на плоскости', 'Создание дренажной системы', 'Устройство дорожного покрытия', 'Устройство рокария', 'Посадка цветника и живой изгороди'],
+  price: '400 000'
+}];
+const tabs = [{
+  id: 'season',
+  title: 'Сезоные выезды',
+  info: ['Стоимость выезда рассчитывается индивидуально (взависимости от: площади участка, удалённости, сложности проводимых работ, количества задействованных людей).']
+}, {
+  id: 'autumn',
+  title: 'Осень',
+  info: ['Уход за цветниками (обрезка сухого, рыхление, прополка).', 'Уход за газоном (осенняя подкормка)', 'Стрижка газона', 'Деление растений (по мере необходимости)', 'Уборка листьев', 'Подготовка растений к зиме,']
+}, {
+  id: 'spring',
+  title: 'Весна',
+  info: ['Обрезка плодовых (производится с ноября по март, до первого сокодвижения)', 'Санитарная обрезка роз (производтся с апреля по май, удаление повреждённых веток после зимы)', 'Внесение удобрения на все посадки (производится ранней весной по снегу)', 'Обработка от вредителей и болезней (устойчивая температура от +5)', 'Уход за газоном (скарификация, аэрация, мульчирование, удобрение, производится после полного просыхания газона)']
+}, {
+  id: 'summer',
+  title: 'Лето',
+  info: ['Уход за цветниками (прополка, обрезка сухого, рыхление)', 'Формовочная обрезка (фигурная стрижка, стрижка изгородей, производитсяпо мере роста)', 'Стрижка газона', 'Обработка газона от сорняков (первая обработка производится после первого коса газона)', 'Внесение удобрений ( по газону производится 1 раз в 2 недели, по цветниками в зависимости от растений)', 'Обработка от вредителей и болезней (производится с интервалом в 10-14 дней)', 'Обработка мощения от сорняков (производится 1 раз в месяц)']
+}];
+const landscape = [{
+  title: 'Ландшафтное проектирование участка',
+  img: 'img/landscape/1.jpg'
+}, {
+  title: 'Подготовка участка',
+  img: 'img/landscape/2.jpg'
+}, {
+  title: 'Создание дренажной системы',
+  img: 'img/landscape/3.jpg'
+}, {
+  title: 'Устройство дорожного покрытия',
+  img: 'img/landscape/4.jpg'
+}, {
+  title: 'Альпийские горки, рокарии, альпинарии',
+  img: 'img/landscape/5.jpg'
+}, {
+  title: 'Устройство ручьев, водоемов, каскадов',
+  img: 'img/landscape/6.jpg'
+}, {
+  title: 'Строительство, маф',
+  img: 'img/landscape/7.jpg'
+}, {
+  title: ' Подпорные стенки',
+  img: 'img/landscape/8.jpg'
+}, {
+  title: 'Посадка растений',
+  img: 'img/landscape/9.jpg'
+}, {
+  title: 'Устройство газона',
+  img: 'img/landscape/10.jpg'
+}];
+
+
+/***/ }),
+
 /***/ "./src/js/createModal.js":
 /*!*******************************!*\
   !*** ./src/js/createModal.js ***!
@@ -98,14 +178,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleProject", function() { return singleProject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalProject", function() { return ModalProject; });
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./src/js/utils.js");
-/* harmony import */ var _data_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data.js */ "./src/js/data.js");
+/* harmony import */ var _data_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data.js */ "./src/data.js");
 
 
 const projectWrapper = document.querySelector('.about-projects');
 
 const singleProject = () => {
   let id = 1;
-  const project = _data_js__WEBPACK_IMPORTED_MODULE_1__["default"].map(project => {
+  const project = _data_js__WEBPACK_IMPORTED_MODULE_1__["projects"].map(project => {
     project.id = id++;
     return project.innerHTML = `
         <div class="project" data-id='${project.id}'>
@@ -123,7 +203,7 @@ const singleProject = () => {
 
 function ModalProject(element) {
   this.container = element;
-  this.list = [..._data_js__WEBPACK_IMPORTED_MODULE_1__["default"]];
+  this.list = [..._data_js__WEBPACK_IMPORTED_MODULE_1__["projects"]];
   this.modalProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-overlay');
   this.projectImg = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-main-img');
   this.projectInfo = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-content');
@@ -159,7 +239,7 @@ ModalProject.prototype.openModal = function (selectedProject, list) {
       position = 'active';
     }
 
-    if (projectIndex === _data_js__WEBPACK_IMPORTED_MODULE_1__["default"].length - 1) {
+    if (projectIndex === _data_js__WEBPACK_IMPORTED_MODULE_1__["projects"].length - 1) {
       position = 'last';
     }
 
@@ -201,32 +281,117 @@ ModalProject.prototype.setMainImage = function (selectedImage) {
 
 /***/ }),
 
-/***/ "./src/js/data.js":
-/*!************************!*\
-  !*** ./src/js/data.js ***!
-  \************************/
+/***/ "./src/js/garden.js":
+/*!**************************!*\
+  !*** ./src/js/garden.js ***!
+  \**************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const projects = [{
-  name: 'Правдинское',
-  img: ['img/projects/pravdinsk/1.jpg', 'img/projects/pravdinsk/2.jpg', 'img/projects/pravdinsk/3.jpg', 'img/projects/pravdinsk/4.jpg'],
-  list: ['Черновая планировка и уборка мусора', 'Планировка территории на плоскости', 'Устройство рокария', 'Посадка плодовых и ягодных деревьев и кустарников', 'Подготовка участка под рулонный газон', 'Отсевная площадка под грядки', 'Устройство экопарковки', 'Установка грядок', 'Установка теплицы', 'Укладка рулонного газона'],
-  price: '1 400 000'
-}, {
-  name: 'Петергоф',
-  img: ['img/projects/petergof/1.jpg', 'img/projects/petergof/2.jpg', 'img/projects/petergof/3.jpg', 'img/projects/petergof/4.jpg'],
-  list: ['Обустройство и укрепление дренажной канавы', 'Посадка растений', 'Укладка рулонного газона'],
-  price: '185 000'
-}, {
-  name: 'Репино',
-  img: ['img/projects/repino/1.jpg', 'img/projects/repino/2.jpg', 'img/projects/repino/3.jpg', 'img/projects/repino/4.jpg'],
-  list: ['Ландшафтное проектирование участка', 'Планировка территории на плоскости', 'Создание дренажной системы', 'Устройство дорожного покрытия', 'Устройство рокария', 'Посадка цветника и живой изгороди'],
-  price: '400 000'
-}];
-/* harmony default export */ __webpack_exports__["default"] = (projects);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data */ "./src/data.js");
+
+
+
+const garden = () => {
+  const tabsLayout = () => {
+    const tabsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.garden-info');
+    const btnsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.garden-list');
+    const btns = _data__WEBPACK_IMPORTED_MODULE_1__["tabs"].map(tab => {
+      const {
+        id,
+        title
+      } = tab;
+      return `
+                <li class="garden-link" data-id="${id}">${title}</li>
+            `;
+    }).join("");
+    btnsWrapper.innerHTML = btns;
+    const tabText = _data__WEBPACK_IMPORTED_MODULE_1__["tabs"].map(tab => {
+      const {
+        id,
+        info
+      } = tab;
+      return `
+                <ul class="garden-text" id="${id}">
+                    ${info.map(text => `<li>${text}</li>`).join("")}
+                </ul>
+            `;
+    }).join("");
+    tabsWrapper.innerHTML = tabText;
+
+    if (!btnsWrapper.firstElementChild.classList.contains('active')) {
+      btnsWrapper.firstElementChild.classList.add('active');
+      tabsWrapper.firstElementChild.classList.add('active');
+    }
+  };
+
+  tabsLayout();
+
+  const gardenTabs = () => {
+    const tabs = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.garden-tabs');
+    const btns = document.querySelectorAll('.garden-link');
+    const tabsInfo = document.querySelectorAll('.garden-text');
+    tabs.addEventListener('click', e => {
+      const id = e.target.dataset.id;
+
+      if (id) {
+        btns.forEach(btn => {
+          btn.classList.remove('active');
+          e.target.classList.add('active');
+        });
+        tabsInfo.forEach(tab => {
+          tab.classList.remove('active');
+        });
+        const tab = document.getElementById(id);
+        tab.classList.add('active');
+      }
+    });
+  };
+
+  gardenTabs();
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (garden);
+
+/***/ }),
+
+/***/ "./src/js/landscape.js":
+/*!*****************************!*\
+  !*** ./src/js/landscape.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data */ "./src/data.js");
+
+
+
+const landscapeList = () => {
+  const listWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.landscape-wrapper');
+  const list = _data__WEBPACK_IMPORTED_MODULE_1__["landscape"].map((item, index) => {
+    const {
+      title,
+      img
+    } = item;
+    return `
+        <div class="landscape-item">
+            <div class="landscape-title">${index + 1}. ${title}</div>
+            <div class="landscape-img">
+                <img src="${img}" alt="${index + 1}">
+            </div>
+        </div>
+        `;
+  }).join("");
+  listWrapper.innerHTML = list;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (landscapeList);
 
 /***/ }),
 
@@ -239,12 +404,16 @@ const projects = [{
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _toggleSidebar_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./toggleSidebar.js */ "./src/js/toggleSidebar.js");
-/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./projects */ "./src/js/projects.js");
-/* harmony import */ var _createModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createModal */ "./src/js/createModal.js");
-/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data */ "./src/data.js");
+/* harmony import */ var _toggleSidebar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toggleSidebar.js */ "./src/js/toggleSidebar.js");
+/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./projects */ "./src/js/projects.js");
+/* harmony import */ var _createModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createModal */ "./src/js/createModal.js");
+/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
+/* harmony import */ var _garden__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./garden */ "./src/js/garden.js");
+/* harmony import */ var _landscape__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./landscape */ "./src/js/landscape.js");
+/* harmony import */ var _popup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./popup */ "./src/js/popup.js");
+
+
 
 
 
@@ -253,16 +422,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  Object(_scroll__WEBPACK_IMPORTED_MODULE_5__["scroll"])();
-  Object(_projects__WEBPACK_IMPORTED_MODULE_3__["default"])(); // projectEvent();
+  Object(_popup__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_scroll__WEBPACK_IMPORTED_MODULE_4__["scroll"])();
+  Object(_projects__WEBPACK_IMPORTED_MODULE_2__["default"])(); // projectEvent();
   // singleProject();
   // const modal = new ModalProject(getElement('.about-projects'))
 
-  /* PopupToggle */
+  Object(_garden__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  Object(_landscape__WEBPACK_IMPORTED_MODULE_6__["default"])();
+});
 
-  const openPopup = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.btn-popup');
-  const popup = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.popup');
-  const closePopup = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.popup-wrapper .close-btn');
+/***/ }),
+
+/***/ "./src/js/popup.js":
+/*!*************************!*\
+  !*** ./src/js/popup.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
+
+
+
+const popup = () => {
+  /* PopupToggle */
+  const openPopup = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.btn-popup');
+  const popup = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.popup');
+  const closePopup = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.popup-wrapper .close-btn');
   popup.addEventListener('click', e => {
     if (e.target === popup) {
       popup.classList.remove('open');
@@ -270,13 +460,15 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   openPopup.addEventListener('click', () => {
     popup.classList.add('open');
-    Object(_scroll__WEBPACK_IMPORTED_MODULE_5__["offScroll"])();
+    Object(_scroll__WEBPACK_IMPORTED_MODULE_1__["offScroll"])();
   });
   closePopup.addEventListener('click', () => {
     popup.classList.remove('open');
-    Object(_scroll__WEBPACK_IMPORTED_MODULE_5__["onScroll"])();
+    Object(_scroll__WEBPACK_IMPORTED_MODULE_1__["onScroll"])();
   });
-});
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (popup);
 
 /***/ }),
 
@@ -289,7 +481,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data */ "./src/data.js");
 /* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
 
@@ -488,8 +680,8 @@ const makingProjects = () => {
 
   const projectEvent = () => {};
 
-  createProject(_data__WEBPACK_IMPORTED_MODULE_0__["default"]);
-  modalProject(_data__WEBPACK_IMPORTED_MODULE_0__["default"]);
+  createProject(_data__WEBPACK_IMPORTED_MODULE_0__["projects"]);
+  modalProject(_data__WEBPACK_IMPORTED_MODULE_0__["projects"]);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (makingProjects);
@@ -536,13 +728,13 @@ const scroll = () => {
 
     if (scrollHeight > navHeight) {
       navbar.classList.add('fixed-nav');
+      header.style.paddingTop = `${navHeight}px`;
     } else {
       navbar.classList.remove('fixed-nav');
     }
 
     if (scrollHeight > 600) {
       topLink.classList.add('show-link');
-      header.style.paddingTop = `${navHeight}px`;
     } else {
       topLink.classList.remove('show-link');
     }

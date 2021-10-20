@@ -27,13 +27,13 @@ const scroll = () => {
         const navHeight = navbar.getBoundingClientRect().height;
         if (scrollHeight > navHeight) {
             navbar.classList.add('fixed-nav');
+            header.style.paddingTop = `${navHeight}px`;
         } else {
             navbar.classList.remove('fixed-nav');
         }
 
         if (scrollHeight > 600) {
             topLink.classList.add('show-link');
-            header.style.paddingTop = `${navHeight}px`;
         } else {
             topLink.classList.remove('show-link');
         }

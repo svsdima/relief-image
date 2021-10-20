@@ -30,7 +30,7 @@
                         <a href="#projects" class="nav-link">Проекты</a>
                     </li>
                     <li>
-                        <a href="#care" class="nav-link">Уход за садом</a>
+                        <a href="#garden" class="nav-link">Уход за садом</a>
                     </li>
                     <li>
                         <a href="#landscape" class="nav-link">Ландшафт</a>
@@ -126,18 +126,18 @@
                                 </label>
                                 <button type="submit" class="btn btn-form">Отправить</button>
                             </div>
-                            
                         </div>
                     </form>
                 </div>
             </article>
         </header>
         <main class="main">
+            <!-- about -->
             <section class="about" id="about">
                 <div class="container">
                     <!-- about company -->
                 <div class="line green"><span class="line-center"></span></div>
-                <article class="about-company">
+                <article class="section-descr">
                     <h2>О Компании</h2>
                     <p>
                         <span>Relief Image</span> - компания по уходу за садом и ландшафтом. Более 10 лет мы занимаемся благоустройством загородных участков, также имеем порядка 60 готовых работ в Ленинградской области и Санкт-Петербурге.
@@ -151,29 +151,8 @@
                     </p>
                 </article>
                 <!-- projects -->
-                <div class="line green"><span class="line-name">Наши проекты</span> <span class="line-full"></span></div>
-                <article class="about-projects" id="projects">
-                    <div class="project first">
-                        <div class="project-img">
-                            <img src="img/projects/pravdinsk/1.jpg" alt="pravdinsk">
-                        </div>
-                        <div>
-                            <span>Правдинское</span>
-                        </div>
-                    </div>
-                    <div class="project second">
-                        <div class="project-img">
-                            <img src="img/projects/pravdinsk/1.jpg" alt="pravdinsk">
-                        </div>
-                        <span>Правдинское</span>
-                    </div>
-                    <div class="project third">
-                        <div class="project-img">
-                            <img src="img/projects/pravdinsk/1.jpg" alt="pravdinsk">
-                        </div>
-                        <span>Правдинское</span>
-                    </div>
-                </article>
+                <div class="line green" id="projects"><span class="line-name">Наши проекты</span> <span class="line-full"></span></div>
+                <article class="about-projects"></article>
                 </div>
             </section>
             <!-- modal-project -->
@@ -182,34 +161,7 @@
                     <button class="close-btn">
                         <i class="fas fa-times"></i>
                     </button>
-                    <div class="modal-content">
-                        <!-- content -->
-                        <div class="modal-project">
-                            <div class="line orange"><span class="line-name">Репино</span> <span class="line-full"></span></div>
-                            <div class="modal-wrapper">
-                                <div class="modal-img-wrapper">
-                                    <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" alt="main-img">
-                                    <div class="modal-images">
-                                        <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="2" alt="main-img">
-                                        <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="3" alt="main-img">
-                                        <img src="./img/projects/pravdinsk/1.jpg" class="modal-main-img" data-id="4" alt="main-img">
-                                    </div>
-                                </div>
-                                <div class="modal-info">
-                                    <h3 class="modal-info-title">Правдинское</h3>
-                                    <ul class="modal-info-list">
-                                        <li>Ландшафтное проектирование участка</li>
-                                        <li>Планировка территории на плоскости</li>
-                                        <li>Создание дренажной системы</li>
-                                        <li>Устройство дорожного покрытия</li>
-                                        <li>Устройство рокария</li>
-                                        <li>Посадка цветника и живой изгороди</li>
-                                    </ul>
-                                    <p>Сумма: <span class="modal-price">400 000</span> рублей</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="modal-content"></div>
                     <!-- prev next buttons -->
                     <button class="prev-project-btn">
                         <i class="fas fa-chevron-left"></i>
@@ -220,25 +172,37 @@
                 </div>
             </div>
             <!-- garden -->
-            <section class="garden">
+            <section class="garden" id="garden">
                 <div class="container">
                     <div class="line orange"><span class="line-name">Уход За Садом</span> <span class="line-full"></span></div>
-                    <div class="garden-descr">
-                        Каждый участок требует постоянный профессиональный уход, чтобы поддерживать ту красоту, которую планировал ландшафтный дизайнер. Это подразумевает большой комплекс работ, требующих много времени. Доверьтесь нашим опытным садоводам! И мы гарантируем качество работ, здоровый сад, а самое главное ваше сэкономленное время.
+                    <div class="section-descr transparent">
+                        <p>
+                            Каждый участок требует постоянный профессиональный уход, чтобы поддерживать ту красоту, которую планировал ландшафтный дизайнер. Это подразумевает большой комплекс работ, требующих много времени. Доверьтесь нашим опытным садоводам! И мы гарантируем качество работ, здоровый сад, а самое главное ваше сэкономленное время.
+                        </p>
                     </div>
-                    <article class="garden-modal">
-                        <ul class="garden-list">
-                            <li class="garden-link">Сезоные выезды</li>
-                            <li class="garden-link">Осень</li>
-                            <li class="garden-link">Весна</li>
-                            <li class="garden-link">Лето</li>
-                        </ul>
-                        <ul class="garden-text">
-                            <li>Уход за цветниками (прополка, обрезка сухого, рыхление)</li>
-                            <li>Формовочная обрезка (фигурная стрижка, стрижка изгородей, производитсяпо мере роста)</li>
-                        </ul>
+                    <article class="garden-tabs">
+                        <ul class="garden-list"></ul>
+                        <div class="garden-info"></div>
                     </article>
                 </div>
+            </section>
+            <!-- landscape -->
+            <section class="landscape" id="landscape">
+                <div class="container">
+                    <div class="line green"><span class="line-name">Ландшафт</span> <span class="line-full"></span></div>
+                    <div class="section-descr">
+                        <p>
+                            Ландшафтный дизайн помогает обеспечить красивый вид вокруг вашего дома. Ведь участок должен выглядеть эстетично, иметь логическую структуру и радовать глаз. Чтобы избежать лишних разочарований, необходимо грамотно продумать и разработать дизайн-проект. Обладая теоретическими знаниями и практическим опытом, мы воплотим в реальность все ваши пожелания.
+                        </p>
+                    </div>
+                    <div class="landscape-wrapper"></div>
+                </div>
+            </section>
+            <section class="reviews" id="reviews">
+                <div class="line green">
+                    <span class="line-center"></span>
+                </div>
+                <div class="line green"><span class="line-name">Отзывы</span></div>
             </section>
         </main>
         <!-- footer -->
