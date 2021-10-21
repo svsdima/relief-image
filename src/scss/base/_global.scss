@@ -210,6 +210,24 @@ a {
 .prev-project-btn {
     left: 0;
 }
+.next-reviews-btn,
+.prev-reviews-btn {
+    position: absolute;
+    top: 50%;
+    right: 30%;
+    transform: translateY(-50%);
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    padding: 10px;
+    i {
+        font-size: 50px;
+        color: $line;
+    }
+}
+.prev-reviews-btn {
+    left: 30%;
+}
 .next-image-btn,
 .prev-image-btn {
     z-index: 550;

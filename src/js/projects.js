@@ -1,10 +1,11 @@
 import { projects } from "../data";
 import { onScroll, offScroll } from "./scroll";
 import { getElement } from "./utils";
+import slider from './slider';
 
 
 const makingProjects = () => {
-    const projectsWrapper = getElement('.about-projects');
+    const projectsWrapper = getElement('.projects-wrapper');
     const modalContent = getElement('.modal-content');
     const modalOverlay = getElement('.modal-overlay');
     const createProject = async (projects) => {
@@ -45,10 +46,12 @@ const makingProjects = () => {
                     <div class="line orange"><span class="line-name">${name}</span> <span class="line-full"></span></div>
                     <div class="modal-wrapper">
                         <div class="modal-img-wrapper">
-                            <img src="${img[0]}" class="modal-main-img" alt="main-img">
+                            <div class="modal-main-img-wrapper">
+                                <img src="${img[0]}" class="modal-main-img" alt="main-img">
+                            </div>
                             <div class="modal-images">
                                 ${img.map((image, imageIndex) => {
-                                    positionImage = 'next';
+                                    let positionImage = 'next';
                                     if (imageIndex === 1) {
                                         positionImage = 'active';
                                     }
@@ -86,13 +89,11 @@ const makingProjects = () => {
         const closeBtn = getElement('.modal-overlay .close-btn');
         const nextProjectBtn = getElement('.next-project-btn');
         const prevProjectBtn = getElement('.prev-project-btn');
-        const nextImageBtn = getElement('.next-image-btn');
-        const prevImageBtn = getElement('.prev-image-btn');
         const last = getElement('.last');
         const active = getElement('.active');
         const modalImages= document.querySelectorAll('.modal-images');
         const modalImage = document.querySelectorAll('.modal-image');
-        const modalMainImg = getElement('.modal-main-img');
+        const prevImageBtns = document.querySelectorAll('.prev-image-btn');
 
         await projectList.forEach(async (singleProject) => {
             await singleProject.addEventListener('click', function(e) {
@@ -101,10 +102,11 @@ const makingProjects = () => {
                         project.classList.remove('active');
                         project.classList.remove('next');
                         project.classList.remove('last');
+                        project.getElementsByClassName('modal-main-img')[0].classList.remove('active');
                     if (e.target.parentElement.parentElement.dataset.id === project.dataset.id) {
-                        console.log(project.dataset.id)
                         modalOverlay.classList.add('open');
                         project.classList.add('active');
+                        project.getElementsByClassName('modal-main-img')[0].classList.add('active');
                     }
                     if (e.target.parentElement.parentElement.dataset.id == 1) {
                         modalContent.lastElementChild.classList.add('last')
@@ -121,55 +123,76 @@ const makingProjects = () => {
                 let img = [...images.getElementsByClassName('modal-image')];
                 img.forEach((image) => {
                     if (image.classList.contains('active')) {
-                        console.log(modalMainImg.src, image.firstElementChild.src);
                         modalMainImg.src = image.firstElementChild.src
-                        console.log(modalMainImg.src, image.firstElementChild.src);
                     }
                 })
             }
             if (images.classList.add('active')) {
                 console.log(nextImageBtn)
             }
-            nextImageBtn.addEventListener('click', () => {
-                console.log(nextImageBtn);
-                console.log('modal-image');
-            });
         });
 
-        const sliderProject = (mainClass, typeBtn) => {
-            let active = document.querySelector(`${mainClass}.active`);
-            let last = document.querySelector(`${mainClass}.last`);
-            let next = active.nextElementSibling;
-            if (!next) {
-                next = modalContent.firstElementChild;
+        
+        modalProjectList.forEach( (project) => {
+            if (project.classList.contains('active')) {
+                modalImage.forEach((image) => {
+                    image.addEventListener('click', (e) => {
+                        modalProjectList.forEach((project) => {
+                            if (project.classList.contains('active')) {
+                                let mainImg = project.getElementsByClassName('modal-main-img')[0];
+                                // let prevImageBtn = project.getElementsByClassName('prev-image-btn')[0];
+                                // let nextImageBtn = project.getElementsByClassName('next-image-btn')[0];
+                                // console.log(project)
+                                // prevImageBtn.addEventListener('click', () => {
+                                //     console.log(prevImageBtn)
+                                //     slider('.modal-images', '.modal-image', 'prev', mainImg)
+                                // });
+                                return mainImg.src = e.target.src;
+                            }
+                        })
+                    });
+                });
+                console.log(prevImageBtns)
+                prevImageBtns.forEach((prevImageBtn) => {
+                    prevImageBtn.addEventListener('click', (e) => {
+                        modalProjectList.forEach((project) => {
+                            if (project.classList.contains('active')) {
+                                let mainImg = project.getElementsByClassName('modal-main-img')[0];
+                                let imgContainer = project.getElementsByClassName('modal-images')[0];
+                                let singleImg = project.getElementsByClassName('modal-image');
+                                
+                            }
+                        })
+                    });
+                })
             }
-            active.classList.remove(['active']);
-            last.classList.remove(['last']);
-            next.classList.remove(['next']);
+        });
+        // modalImage.forEach((image) => {
+        //     console.log(image)
+        //     image.addEventListener('click', (e) => {
+        //         modalProjectList.forEach((project) => {
+        //             if (project.classList.contains('active')) {
+        //                 console.log(e.target)
+        //             }
+        //         })
+                
+        //     });
+        // })
 
-            if (typeBtn === 'prev') {
-                active.classList.add('next');
-                last.classList.add('active');
-                next = last.previousElementSibling;
-                if (!next) {
-                    next = modalContent.lastElementChild;
-                }
-                next.classList.remove(['next']);
-                next.classList.add('last');
-                return;
-            }
-            active.classList.add('last');
-            last.classList.add('next');
-            next.classList.add('active');
-        }
+        let mainImg = getElement('.modal-main-img');
+        console.log(mainImg)
 
         prevProjectBtn.addEventListener('click', () => {
-            sliderProject('.single-project', 'prev')
+            slider(modalContent, '.single-project', 'prev')
         });
         nextProjectBtn.addEventListener('click', () => {
-            sliderProject('.single-project')
+            slider(modalContent, '.single-project')
         });
 
+        
+        // nextImageBtn.addEventListener('click', () => {
+        //     slider('.modal-image')
+        // });
 
         closeBtn.addEventListener('click', () => {
             modalOverlay.classList.remove('open');

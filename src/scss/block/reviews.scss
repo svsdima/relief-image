@@ -1,3 +1,58 @@
 .reviews {
-    padding: 80px 0;
+    padding: 80px 0 0 0;
+    &-wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        height: 100%;
+    }
+    .review {
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 350px;
+        transition: $transition;
+        &-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        &.active {
+            z-index: 3;
+            opacity: 1;
+        }
+        &.next {
+            z-index: 2;
+            opacity: 0.25;
+            transform: translateX(50%) scale(0.7);
+        }
+        &.last {
+            z-index: 2;
+            opacity: 0.25;
+            transform: translateX(-150%) scale(0.7);
+        }
+        &-img {
+            width: 77px;
+            height: 77px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        &-text {
+            font-size: 14px;
+            line-height: 16px;
+            color: $line;
+        }
+        &-name {
+            padding: 25px 0 35px 0;
+            font-size: 14px;
+            line-height: 16px;
+            text-transform: capitalize ;
+        }
+    }
 }

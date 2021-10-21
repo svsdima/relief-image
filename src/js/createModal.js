@@ -1,7 +1,7 @@
 import { getElement } from "./utils.js";
 import { projects } from "../data.js";
 
-const projectWrapper = document.querySelector('.about-projects');
+const projectWrapper = document.querySelector('.projects-wrapper');
 
 const singleProject = () => {
     let id = 1;

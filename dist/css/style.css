@@ -189,6 +189,24 @@ a {
 .prev-project-btn {
   left: 0; }
 
+.next-reviews-btn,
+.prev-reviews-btn {
+  position: absolute;
+  top: 50%;
+  right: 30%;
+  transform: translateY(-50%);
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  padding: 10px; }
+  .next-reviews-btn i,
+  .prev-reviews-btn i {
+    font-size: 50px;
+    color: #34642C; }
+
+.prev-reviews-btn {
+  left: 30%; }
+
 .next-image-btn,
 .prev-image-btn {
   z-index: 550;
@@ -3905,14 +3923,17 @@ template {
     max-width: 440px; }
   .header .advantages {
     position: absolute;
-    width: 860px;
+    width: 100%;
     bottom: -45px;
-    background: rgba(33, 26, 21, 0.87);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 180px;
-    padding: 25px 100px; }
+    left: 50%;
+    transform: translateX(-50%); }
+    .header .advantages-wrapper {
+      background: rgba(33, 26, 21, 0.87);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 20px;
+      margin-top: 180px;
+      padding: 25px 0; }
   .header .advantage {
     display: flex;
     flex-direction: column;
@@ -3933,47 +3954,67 @@ template {
       color: #FFDF9E; }
 
 .about {
-  margin-top: 100px; }
-  .about-projects {
-    margin-top: 40px;
-    display: grid;
-    gap: 17px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-areas: "first second" "first third" "first third"; }
-  .about .project {
+  margin-top: 100px;
+  position: relative; }
+  .about::before {
+    content: url("../img/bush.png");
+    position: absolute;
+    top: 20px;
+    left: -5%;
+    z-index: -5; }
+
+.projects-wrapper {
+  margin-top: 40px;
+  display: grid;
+  gap: 17px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas: "first second" "first third" "first third"; }
+
+.projects .project {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in; }
+  .projects .project-img {
     position: relative;
-    cursor: pointer;
+    height: 100%;
     transition: all 0.2s ease-in; }
-    .about .project-img {
-      position: relative;
-      height: 100%;
-      transition: all 0.2s ease-in; }
-      .about .project-img img {
-        object-fit: cover;
-        height: 100%; }
-    .about .project span {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 0;
-      padding: 10px 0;
-      color: #3D2220;
-      font-size: 18px;
-      line-height: 21px;
-      background: rgba(255, 239, 227, 0.58);
-      text-transform: capitalize;
-      transition: all 0.2s ease-in; }
-    .about .project:hover span {
-      background: #ffefe3; }
-  .about [data-id='1'] {
-    grid-area: first; }
-  .about [data-id='2'] {
-    grid-area: second; }
-  .about [data-id='3'] {
-    grid-area: third; }
+    .projects .project-img img {
+      object-fit: cover;
+      height: 100%; }
+  .projects .project span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    padding: 10px 0;
+    color: #3D2220;
+    font-size: 18px;
+    line-height: 21px;
+    background: rgba(255, 239, 227, 0.58);
+    text-transform: capitalize;
+    transition: all 0.2s ease-in; }
+  .projects .project:hover span {
+    background: #ffefe3; }
+
+.projects [data-id='1'] {
+  grid-area: first; }
+
+.projects [data-id='2'] {
+  grid-area: second; }
+
+.projects [data-id='3'] {
+  grid-area: third; }
+
+.projects .section-descr {
+  position: relative; }
+  .projects .section-descr::before {
+    content: url("../img/about.png");
+    position: absolute;
+    bottom: 0;
+    right: 0; }
 
 .garden {
   margin-top: 80px;
@@ -3986,6 +4027,8 @@ template {
     border: 1px solid rgba(0, 0, 0, 0.25);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
+    position: relative; }
+  .garden-main {
     display: grid;
     grid-template-columns: 1fr 2fr; }
   .garden-link {
@@ -4048,6 +4091,10 @@ template {
         background: #FF7E35; }
     .garden-text.active {
       display: block; }
+  .garden-attention p {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 125.69%; }
 
 .modal-overlay {
   opacity: 0;
@@ -4089,8 +4136,13 @@ template {
   margin-top: 20px;
   position: relative; }
 
+.modal-main-img-wrapper {
+  width: 620px;
+  height: 300px; }
+
 .modal-main-img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: all 0.2s ease-in; }
 
@@ -4257,4 +4309,107 @@ template {
     margin-bottom: 30px; }
 
 .reviews {
-  padding: 80px 0; }
+  padding: 80px 0 0 0; }
+  .reviews-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 350px;
+    height: 100%; }
+  .reviews .review {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    transition: all 0.2s ease-in; }
+    .reviews .review-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+    .reviews .review.active {
+      z-index: 3;
+      opacity: 1; }
+    .reviews .review.next {
+      z-index: 2;
+      opacity: 0.25;
+      transform: translateX(50%) scale(0.7); }
+    .reviews .review.last {
+      z-index: 2;
+      opacity: 0.25;
+      transform: translateX(-150%) scale(0.7); }
+    .reviews .review-img {
+      width: 77px;
+      height: 77px;
+      border-radius: 50%;
+      overflow: hidden; }
+      .reviews .review-img img {
+        height: 100%;
+        object-fit: cover; }
+    .reviews .review-text {
+      font-size: 14px;
+      line-height: 16px;
+      color: #34642C; }
+    .reviews .review-name {
+      padding: 25px 0 35px 0;
+      font-size: 14px;
+      line-height: 16px;
+      text-transform: capitalize; }
+
+.footer {
+  margin: 75px 0 0 0;
+  padding: 75px 0 0 0;
+  background-color: #5A554D;
+  position: relative; }
+  .footer::after {
+    content: "";
+    background: url("../img/footer.png") center center/cover no-repeat;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 35%; }
+  .footer-title {
+    font-size: 18px;
+    line-height: 23px;
+    color: #fff; }
+  .footer-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 25px;
+    margin: 50px 0 200px 0; }
+    .footer-wrapper .footer-social {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-content: center;
+      align-items: center; }
+      .footer-wrapper .footer-social .social-icon {
+        margin: 0; }
+  .footer-info p {
+    margin: 0;
+    padding-bottom: 20px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px; }
+  .footer-info p, .footer-info span, .footer-info a {
+    color: #fff; }
+  .footer-link {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px; }
+    .footer-link i {
+      color: #fff; }
+    .footer-link span {
+      position: relative; }
+      .footer-link span:before {
+        content: "";
+        width: 0;
+        height: 0.1em;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #fff;
+        transition: all 0.2s ease-in; }
+      .footer-link span:hover:before {
+        width: 100%; }

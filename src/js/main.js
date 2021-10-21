@@ -7,7 +7,7 @@ import { scroll } from './scroll';
 import garden from "./garden";
 import landscapeList from './landscape';
 import popup from "./popup";
-
+import reviewsSection from './reviews';
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -20,4 +20,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
     garden();
     landscapeList();
+    reviewsSection();
 });

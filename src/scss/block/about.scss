@@ -1,58 +1,11 @@
 .about {
     margin-top: 100px;
-    &-projects {
-        margin-top: 40px;
-        display: grid;
-        gap: 17px;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        grid-template-areas: 
-        "first second"
-        "first third"
-        "first third"
-        ;
-    }
-    .project {
-        position: relative;
-        cursor: pointer;
-        transition: $transition;
-        &-img {
-            position: relative;
-            height: 100%;
-            img {
-            object-fit: cover;
-            height: 100%;
-            }
-            transition: $transition;
-        }
-        span {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 0;
-            padding: 10px 0;
-            color: $project-text;
-            font-size: 18px;
-            line-height: 21px;
-            background: rgba($project-bg, .58);
-            text-transform: capitalize;
-            transition: $transition;
-        }
-        &:hover {
-            span {
-                background: rgba($project-bg, 1);
-            }
-        }
-    }
-    [data-id='1'] {
-        grid-area: first;
-    }
-    [data-id='2'] {
-        grid-area: second;
-    }
-    [data-id='3'] {
-        grid-area: third;
+    position: relative;
+    &::before {
+        content: url('../img/bush.png');
+        position: absolute;
+        top: 20px;
+        left: -5%;
+        z-index: -5;
     }
 }

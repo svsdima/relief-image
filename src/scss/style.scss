@@ -11,6 +11,7 @@ $descr-2: #39362F;
 $project-bg:#FFEFE3;
 $project-text : #3D2220;
 $modal-bg: #504B47;
+$footer: #5A554D;
 $container-width: 1060px;
 $transition: all 0.2s ease-in;
 
@@ -23,8 +24,11 @@ $transition: all 0.2s ease-in;
 @import './block/navbar';
 @import './block/header';
 @import './block/about';
+@import './block/projects';
 @import './block/garden';
 @import './block/modal';
 @import './block/popup';
 @import './block/landscape';
 @import './block/reviews';
+@import './block/footer';
+
