@@ -2,10 +2,10 @@
     background: url('../img/main-bg.jpg') center (center / cover) no-repeat;
     height: 100vh;
     margin-top: -70px;
+    position: relative;
     &-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr auto;
     }
     &-left {
         h1 {
@@ -20,18 +20,6 @@
         }
     }
     .advantages {
-        // position: absolute;
-        // width: $container-width - 200px;
-        // bottom: -45px;
-        // background: rgba($bg, 0.87);
-        // display: grid;
-        // grid-template-columns: repeat(3, 1fr);
-        // column-gap: 20px;
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
-        // margin-top: 180px;
-        // padding: 25px 100px;
         position: absolute;
         width: 100%;
         bottom: -45px;
@@ -42,7 +30,6 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             column-gap: 20px;
-            margin-top: 180px;
             padding: 25px 0;
         }
     }

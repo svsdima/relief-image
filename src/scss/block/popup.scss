@@ -46,14 +46,14 @@
     }
     &-item {
         padding-bottom: 20px;
-        input {
-            padding: 5px 20px;
-            min-height: 30px;
-            width: 90%;
-        }
     }
     &-form {
         padding: 40px 50px;
+    }
+    &-input {
+        padding: 5px 20px;
+        min-height: 30px;
+        width: 90%;
     }
 }
 .checkbox {
@@ -62,10 +62,18 @@
     justify-content: center;
     column-gap: 10px;
     align-items: center;
+    grid-template-areas:
+    "first second third";
+    &-input {
+        grid-column: 1;
+        grid-area: first;
+    }
     &-label {
         font-size: 15px;
         line-height: 15px;
         color: $white;
+        grid-column: 2;
+        grid-area: second;
         a {
             font-size: 15px;
             color: $main-color;
@@ -87,5 +95,9 @@
                 }
             }
         }
+    }
+    & .btn-form {
+        grid-column: 3;
+        grid-area: third;
     }
 }

@@ -29,7 +29,7 @@
         column-gap: 80px;
         margin-top: 50px;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 2fr 1fr;
         padding-left: 40px;
     }
     &-images {
@@ -39,9 +39,9 @@
         margin-top: 20px;
         position: relative;
     }
-    &-main-img-wrapper {
-        width: 620px;
-        height: 300px;
+    &-img-wrapper {
+        max-width: 620px;
+        max-height: 300px;
     }
     &-main-img {
         width: 100%;

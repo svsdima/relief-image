@@ -25,7 +25,7 @@ const scroll = () => {
     window.addEventListener('scroll', () => {
         const scrollHeight = window.pageYOffset;
         const navHeight = navbar.getBoundingClientRect().height;
-        if (scrollHeight > navHeight) {
+        if (scrollHeight > navHeight && window.screen.width >= 800) {
             navbar.classList.add('fixed-nav');
             header.style.paddingTop = `${navHeight}px`;
         } else {

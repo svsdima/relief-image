@@ -1,6 +1,6 @@
 import { getElement } from "./utils";
 
-const slider = (container, mainClass, typeBtn, mainImg = '') => {
+const slider = (container, mainClass, typeBtn) => {
     let active = getElement(`${mainClass}.active`);
     let last = getElement(`${mainClass}.last`);
     let next = active.nextElementSibling;
@@ -25,10 +25,6 @@ const slider = (container, mainClass, typeBtn, mainImg = '') => {
     active.classList.add('last');
     last.classList.add('next');
     next.classList.add('active');
-
-    if (mainImg) {
-        console.log(`Майн ${mainImg}`);
-    }
 }
 
 export default slider;

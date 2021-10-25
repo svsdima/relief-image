@@ -75,7 +75,7 @@ a {
         align-items: center;
         background: $main-color;
         border-radius: 50px;
-        margin-bottom: 25px;
+        margin: 10px 0;
         padding: 5px;
         i {
             font-size: 20px;
@@ -195,6 +195,7 @@ a {
 .next-project-btn,
 .prev-project-btn {
     position: absolute;
+    z-index: 20;
     top: 50%;
     right: 0;
     transform: translateY(-50%);
@@ -213,6 +214,7 @@ a {
 .next-reviews-btn,
 .prev-reviews-btn {
     position: absolute;
+    z-index: 20;
     top: 50%;
     right: 30%;
     transform: translateY(-50%);
@@ -265,7 +267,6 @@ a {
     p {
         font-size: 14px;
         line-height: 20px;
-        text-align: justify;
         letter-spacing: 0.1em;
         color: $main-color;
         font-weight: 300;
@@ -278,5 +279,24 @@ a {
     }
     &.transparent {
         background: rgba($descr-2, .8);
+    }
+    & .btn-descr {
+        display: none;
+        margin-top: 20px;
+        text-align: center;
+        cursor: pointer;
+        padding: 10px;
+        i {
+            color: $main-color;
+            font-size: 40px;
+        }
+    }
+    & .hide-text {
+        &.close {
+            display: none;
+        }
+        &.open {
+            display: block;
+        }
     }
 }

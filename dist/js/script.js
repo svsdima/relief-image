@@ -393,16 +393,66 @@ const landscapeList = () => {
       title,
       img
     } = item;
-    return `
-        <div class="landscape-item">
-            <div class="landscape-title">${index + 1}. ${title}</div>
-            <div class="landscape-img">
-                <img src="${img}" alt="${index + 1}">
+
+    if (index < 4) {
+      return `
+                <div class="landscape-item">
+                    <div class="landscape-title">${index + 1}. ${title}</div>
+                    <div class="landscape-img">
+                        <img src="${img}" alt="${index + 1}">
+                    </div>
+                </div>
+            `;
+    } else if (index >= 4) {
+      return `
+            <div class="landscape-item show">
+                <div class="landscape-title">${index + 1}. ${title}</div>
+                <div class="landscape-img">
+                    <img src="${img}" alt="${index + 1}">
+                </div>
             </div>
-        </div>
         `;
-  }).join("");
-  listWrapper.innerHTML = list;
+    }
+  });
+  listWrapper.innerHTML = list.join("");
+  const landscapeItems = document.querySelectorAll('.landscape-item');
+  const btnLandscape = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.btn-landscape');
+
+  if (window.screen.width > 800) {
+    landscapeItems.forEach(item => {
+      if (item.classList.contains('hide')) {
+        item.classList.remove('hide');
+        item.classList.add('show');
+      }
+    });
+  }
+
+  if (window.screen.width <= 800) {
+    landscapeItems.forEach(item => {
+      if (item.classList.contains('show')) {
+        item.classList.remove('show');
+        item.classList.add('hide');
+      }
+    });
+  }
+
+  btnLandscape.addEventListener('click', () => {
+    landscapeItems.forEach(item => {
+      if (item.classList.contains('hide')) {
+        item.classList.remove('hide');
+        item.classList.add('show');
+        btnLandscape.innerHTML = `
+                    <i class="fas fa-chevron-up"></i>
+                `;
+      } else if (item.classList.contains('show')) {
+        item.classList.remove('show');
+        item.classList.add('hide');
+        btnLandscape.innerHTML = `
+                    <i class="fas fa-chevron-down"></i>
+                `;
+      }
+    });
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (landscapeList);
@@ -427,6 +477,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _landscape__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./landscape */ "./src/js/landscape.js");
 /* harmony import */ var _popup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./popup */ "./src/js/popup.js");
 /* harmony import */ var _reviews__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./reviews */ "./src/js/reviews.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+
 
 
 
@@ -447,6 +499,34 @@ window.addEventListener('DOMContentLoaded', () => {
   Object(_garden__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_landscape__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_reviews__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  const btnDescr = Object(_utils__WEBPACK_IMPORTED_MODULE_9__["getElement"])('.section-descr .btn-descr');
+  const hideText = Object(_utils__WEBPACK_IMPORTED_MODULE_9__["getElement"])('.section-descr .hide-text');
+
+  if (window.screen.width > 800) {
+    hideText.classList.remove('close');
+    hideText.classList.add('open');
+  }
+
+  if (window.screen.width <= 800) {
+    hideText.classList.remove('open');
+    hideText.classList.add('close');
+  }
+
+  btnDescr.addEventListener('click', () => {
+    if (hideText.classList.contains('close')) {
+      hideText.classList.remove('close');
+      hideText.classList.add('open');
+      btnDescr.innerHTML = `
+                <i class="fas fa-chevron-up"></i>
+            `;
+    } else if (hideText.classList.contains('open')) {
+      hideText.classList.remove('open');
+      hideText.classList.add('close');
+      btnDescr.innerHTML = `
+                <i class="fas fa-chevron-down"></i>
+            `;
+    }
+  });
 });
 
 /***/ }),
@@ -669,11 +749,7 @@ const makingProjects = () => {
         prevImageBtns.forEach(prevImageBtn => {
           prevImageBtn.addEventListener('click', e => {
             modalProjectList.forEach(project => {
-              if (project.classList.contains('active')) {
-                let mainImg = project.getElementsByClassName('modal-main-img')[0];
-                let imgContainer = project.getElementsByClassName('modal-images')[0];
-                let singleImg = project.getElementsByClassName('modal-image');
-              }
+              if (project.classList.contains('active')) {}
             });
           });
         });
@@ -816,7 +892,7 @@ const scroll = () => {
     const scrollHeight = window.pageYOffset;
     const navHeight = navbar.getBoundingClientRect().height;
 
-    if (scrollHeight > navHeight) {
+    if (scrollHeight > navHeight && window.screen.width >= 800) {
       navbar.classList.add('fixed-nav');
       header.style.paddingTop = `${navHeight}px`;
     } else {
@@ -899,7 +975,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
 
 
-const slider = (container, mainClass, typeBtn, mainImg = '') => {
+const slider = (container, mainClass, typeBtn) => {
   let active = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])(`${mainClass}.active`);
   let last = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])(`${mainClass}.last`);
   let next = active.nextElementSibling;
@@ -929,10 +1005,6 @@ const slider = (container, mainClass, typeBtn, mainImg = '') => {
   active.classList.add('last');
   last.classList.add('next');
   next.classList.add('active');
-
-  if (mainImg) {
-    console.log(`Майн ${mainImg}`);
-  }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (slider);

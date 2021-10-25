@@ -3,6 +3,7 @@
     &-wrapper {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
         column-gap: 20px;
         row-gap: 25px;
     }
@@ -10,5 +11,24 @@
         font-size: 14px;
         line-height: 16px;
         margin-bottom: 30px;
+    }
+    & .btn-landscape {
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+        cursor: pointer;
+        padding: 10px;
+        i {
+            font-size: 40px;
+            color: $line;
+        }
+    }
+    &-item {
+        &.show {
+            display: block;
+        }
+        &.hide {
+            display: none;
+        }
     }
 }

@@ -157,9 +157,6 @@ const makingProjects = () => {
                     prevImageBtn.addEventListener('click', (e) => {
                         modalProjectList.forEach((project) => {
                             if (project.classList.contains('active')) {
-                                let mainImg = project.getElementsByClassName('modal-main-img')[0];
-                                let imgContainer = project.getElementsByClassName('modal-images')[0];
-                                let singleImg = project.getElementsByClassName('modal-image');
                                 
                             }
                         })
