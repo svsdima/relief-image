@@ -28,7 +28,7 @@ const makingProjects = () => {
 
     const modalProject = async (projects) => {
         let positionProject = 'next';
-        let positionImage = 'next';
+        // let positionImage = 'next';
         let id = 1;
 
         modalContent.innerHTML = await projects.map((project, projectIndex) => {
@@ -64,13 +64,13 @@ const makingProjects = () => {
                                         </div>
                                     `;
                                 }).join("")}
-                                <button class="prev-image-btn">
-                                    <i class="fas fa-chevron-left"></i>
-                                </button>
-                                <button class="next-image-btn">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
                             </div>
+                            <button class="prev-image-btn">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="next-image-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
                         </div>
                         <div class="modal-info">
                             <h3 class="modal-info-title">${name}</h3>
@@ -94,6 +94,7 @@ const makingProjects = () => {
         const modalImages= document.querySelectorAll('.modal-images');
         const modalImage = document.querySelectorAll('.modal-image');
         const prevImageBtns = document.querySelectorAll('.prev-image-btn');
+        const nextImageBtns = document.querySelectorAll('.next-image-btn');
 
         await projectList.forEach(async (singleProject) => {
             await singleProject.addEventListener('click', function(e) {
@@ -149,57 +150,57 @@ const makingProjects = () => {
                                 // });
                                 return mainImg.src = e.target.src;
                             }
-                        })
+                        });
                     });
                 });
-                console.log(prevImageBtns)
+
+                // modal-image-btns event
                 prevImageBtns.forEach((prevImageBtn) => {
                     prevImageBtn.addEventListener('click', (e) => {
                         modalProjectList.forEach((project) => {
                             if (project.classList.contains('active')) {
-                                
-                            }
-                        })
+                                let modalWrapper = project.childNodes[3].children[0].querySelector('.modal-images');
+                                let modalImageActive = project.childNodes[3].children[0].children[1].querySelector('.modal-image.active');
+                                let modalImageLast = project.childNodes[3].children[0].children[1].querySelector('.modal-image.last');
+                                let mainImg = project.childNodes[3].children[0].querySelector('.modal-main-img');
+
+                                slider(modalWrapper, modalImageActive, modalImageLast, 'prev', mainImg)
+                            };
+                        });
                     });
-                })
-            }
+                });
+                nextImageBtns.forEach((nextImageBtn) => {
+                    nextImageBtn.addEventListener('click', (e) => {
+                        modalProjectList.forEach((project) => {
+                            if (project.classList.contains('active')) {
+                                let modalWrapper = project.childNodes[3].children[0].querySelector('.modal-images');
+                                let modalImageActive = project.childNodes[3].children[0].children[1].querySelector('.modal-image.active');
+                                let modalImageLast = project.childNodes[3].children[0].children[1].querySelector('.modal-image.last');
+                                let mainImg = project.childNodes[3].children[0].querySelector('.modal-main-img');
+
+                                slider(modalWrapper, modalImageActive, modalImageLast, '', mainImg)
+                            };
+                        });
+                    });
+                });
+            };
         });
-        // modalImage.forEach((image) => {
-        //     console.log(image)
-        //     image.addEventListener('click', (e) => {
-        //         modalProjectList.forEach((project) => {
-        //             if (project.classList.contains('active')) {
-        //                 console.log(e.target)
-        //             }
-        //         })
-                
-        //     });
-        // })
 
         let mainImg = getElement('.modal-main-img');
         console.log(mainImg)
 
         prevProjectBtn.addEventListener('click', () => {
-            slider(modalContent, '.single-project', 'prev')
+            slider(modalContent, getElement('.single-project.active'), getElement('.single-project.last'), 'prev');
         });
         nextProjectBtn.addEventListener('click', () => {
-            slider(modalContent, '.single-project')
+            slider(modalContent, getElement('.single-project.active'), getElement('.single-project.last'));
         });
-
-        
-        // nextImageBtn.addEventListener('click', () => {
-        //     slider('.modal-image')
-        // });
 
         closeBtn.addEventListener('click', () => {
             modalOverlay.classList.remove('open');
             onScroll();
         });
     };
-
-    const projectEvent = () => {
-        
-    }
 
     createProject(projects);
     modalProject(projects);

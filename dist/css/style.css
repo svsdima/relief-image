@@ -225,10 +225,10 @@ a {
     color: #FFDF9E; }
 
 .prev-image-btn {
-  left: -50px; }
+  left: 0; }
 
 .next-image-btn {
-  right: -50px; }
+  right: 0; }
 
 .section-descr {
   margin: 40px 0;
@@ -3813,7 +3813,7 @@ template {
 
 .navbar {
   position: relative;
-  z-index: 5;
+  z-index: 50;
   background: rgba(37, 73, 31, 0.31);
   mix-blend-mode: normal;
   backdrop-filter: blur(10px);
@@ -4165,7 +4165,7 @@ template {
 
 .modal-main-img {
   width: 100%;
-  height: 100%;
+  height: 50%;
   object-fit: cover;
   transition: all 0.2s ease-in; }
 
@@ -4489,6 +4489,12 @@ template {
   .modal-img-wrapper {
     max-width: 450px;
     margin: 0 auto; }
+  .modal-info {
+    margin-top: 30px; }
+    .modal-info-title {
+      display: none; }
+    .modal-info-list {
+      margin: 20px 0; }
   .landscape-wrapper {
     grid-template-columns: repeat(2, 1fr); } }
 
@@ -4564,7 +4570,10 @@ template {
       margin-right: 0;
       font-size: 16px;
       margin-bottom: 10px;
-      padding: 15px 0; }
+      padding: 15px 0;
+      color: #FFDF9E; }
+      .navbar .nav-link::before {
+        background: #FFDF9E; }
     .navbar .links-container {
       grid-area: c;
       height: 0; }
@@ -4574,6 +4583,34 @@ template {
     display: none; }
   .projects-wrapper {
     grid-template-areas: "first first" "second third" "second third"; }
+  .modal-content {
+    overflow: inherit; }
+  .modal-images {
+    position: relative;
+    width: 100%;
+    height: 100%; }
+  .modal-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s ease-in;
+    opacity: 0; }
+    .modal-image.active {
+      opacity: 1;
+      transform: translateX(0); }
+    .modal-image.next {
+      transform: translateX(100%); }
+    .modal-image.last {
+      transform: translateX(-100%); }
+  .modal-wrapper {
+    margin-top: 20px;
+    grid-template-rows: 1fr 2fr; }
+  .modal-main-img {
+    display: none; }
+  .modal-img-wrapper {
+    min-width: 400px; }
   .garden {
     margin: 0 10px; }
     .garden-main {

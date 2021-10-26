@@ -32,10 +32,11 @@ const reviewsSection = () => {
     }).join("");
 
     prevReviewBtn.addEventListener('click', () => {
-        slider(reviewsWrapper, '.review', 'prev')
+        slider(reviewsWrapper, getElement('.review.active'), getElement('.review.last'), 'prev');
+
     });
     nextReviewBtn.addEventListener('click', () => {
-        slider(reviewsWrapper, '.review')
+        slider(reviewsWrapper, getElement('.review.active'), getElement('.review.last'));
     });
 };
 

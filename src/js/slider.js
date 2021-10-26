@@ -1,8 +1,8 @@
 import { getElement } from "./utils";
 
-const slider = (container, mainClass, typeBtn) => {
-    let active = getElement(`${mainClass}.active`);
-    let last = getElement(`${mainClass}.last`);
+const slider = (container, activeClass, lastClass, typeBtn, mainImg) => {
+    let active = activeClass;
+    let last = lastClass;
     let next = active.nextElementSibling;
     if (!next) {
         next = container.firstElementChild;
@@ -20,11 +20,18 @@ const slider = (container, mainClass, typeBtn) => {
         }
         next.classList.remove(['next']);
         next.classList.add('last');
+        if (mainImg) {
+            mainImg.src = active.children[0].src;
+        }     
         return;
     }
+    
     active.classList.add('last');
     last.classList.add('next');
     next.classList.add('active');
+    if (mainImg) {
+        mainImg.src = active.children[0].src;
+    } 
 }
 
 export default slider;

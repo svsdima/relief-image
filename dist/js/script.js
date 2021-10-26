@@ -611,8 +611,8 @@ const makingProjects = () => {
   };
 
   const modalProject = async projects => {
-    let positionProject = 'next';
-    let positionImage = 'next';
+    let positionProject = 'next'; // let positionImage = 'next';
+
     let id = 1;
     modalContent.innerHTML = await projects.map((project, projectIndex) => {
       project.id = id++;
@@ -658,13 +658,13 @@ const makingProjects = () => {
                                         </div>
                                     `;
       }).join("")}
-                                <button class="prev-image-btn">
-                                    <i class="fas fa-chevron-left"></i>
-                                </button>
-                                <button class="next-image-btn">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
                             </div>
+                            <button class="prev-image-btn">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="next-image-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
                         </div>
                         <div class="modal-info">
                             <h3 class="modal-info-title">${name}</h3>
@@ -687,6 +687,7 @@ const makingProjects = () => {
     const modalImages = document.querySelectorAll('.modal-images');
     const modalImage = document.querySelectorAll('.modal-image');
     const prevImageBtns = document.querySelectorAll('.prev-image-btn');
+    const nextImageBtns = document.querySelectorAll('.next-image-btn');
     await projectList.forEach(async singleProject => {
       await singleProject.addEventListener('click', function (e) {
         Object(_scroll__WEBPACK_IMPORTED_MODULE_1__["offScroll"])();
@@ -744,45 +745,55 @@ const makingProjects = () => {
               }
             });
           });
-        });
-        console.log(prevImageBtns);
+        }); // modal-image-btns event
+
         prevImageBtns.forEach(prevImageBtn => {
           prevImageBtn.addEventListener('click', e => {
             modalProjectList.forEach(project => {
-              if (project.classList.contains('active')) {}
+              if (project.classList.contains('active')) {
+                let modalWrapper = project.childNodes[3].children[0].querySelector('.modal-images');
+                let modalImageActive = project.childNodes[3].children[0].children[1].querySelector('.modal-image.active');
+                let modalImageLast = project.childNodes[3].children[0].children[1].querySelector('.modal-image.last');
+                let mainImg = project.childNodes[3].children[0].querySelector('.modal-main-img');
+                Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalWrapper, modalImageActive, modalImageLast, 'prev', mainImg);
+              }
+
+              ;
+            });
+          });
+        });
+        nextImageBtns.forEach(nextImageBtn => {
+          nextImageBtn.addEventListener('click', e => {
+            modalProjectList.forEach(project => {
+              if (project.classList.contains('active')) {
+                let modalWrapper = project.childNodes[3].children[0].querySelector('.modal-images');
+                let modalImageActive = project.childNodes[3].children[0].children[1].querySelector('.modal-image.active');
+                let modalImageLast = project.childNodes[3].children[0].children[1].querySelector('.modal-image.last');
+                let mainImg = project.childNodes[3].children[0].querySelector('.modal-main-img');
+                Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalWrapper, modalImageActive, modalImageLast, '', mainImg);
+              }
+
+              ;
             });
           });
         });
       }
-    }); // modalImage.forEach((image) => {
-    //     console.log(image)
-    //     image.addEventListener('click', (e) => {
-    //         modalProjectList.forEach((project) => {
-    //             if (project.classList.contains('active')) {
-    //                 console.log(e.target)
-    //             }
-    //         })
-    //     });
-    // })
 
+      ;
+    });
     let mainImg = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-main-img');
     console.log(mainImg);
     prevProjectBtn.addEventListener('click', () => {
-      Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalContent, '.single-project', 'prev');
+      Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalContent, Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.last'), 'prev');
     });
     nextProjectBtn.addEventListener('click', () => {
-      Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalContent, '.single-project');
-    }); // nextImageBtn.addEventListener('click', () => {
-    //     slider('.modal-image')
-    // });
-
+      Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalContent, Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.last'));
+    });
     closeBtn.addEventListener('click', () => {
       modalOverlay.classList.remove('open');
       Object(_scroll__WEBPACK_IMPORTED_MODULE_1__["onScroll"])();
     });
   };
-
-  const projectEvent = () => {};
 
   createProject(_data__WEBPACK_IMPORTED_MODULE_0__["projects"]);
   modalProject(_data__WEBPACK_IMPORTED_MODULE_0__["projects"]);
@@ -843,10 +854,10 @@ const reviewsSection = () => {
       `;
   }).join("");
   prevReviewBtn.addEventListener('click', () => {
-    Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(reviewsWrapper, '.review', 'prev');
+    Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(reviewsWrapper, Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.last'), 'prev');
   });
   nextReviewBtn.addEventListener('click', () => {
-    Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(reviewsWrapper, '.review');
+    Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(reviewsWrapper, Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.last'));
   });
 };
 
@@ -892,7 +903,7 @@ const scroll = () => {
     const scrollHeight = window.pageYOffset;
     const navHeight = navbar.getBoundingClientRect().height;
 
-    if (scrollHeight > navHeight && window.screen.width >= 800) {
+    if (scrollHeight > navHeight && window.screen.width > 800) {
       navbar.classList.add('fixed-nav');
       header.style.paddingTop = `${navHeight}px`;
     } else {
@@ -975,9 +986,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
 
 
-const slider = (container, mainClass, typeBtn) => {
-  let active = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])(`${mainClass}.active`);
-  let last = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])(`${mainClass}.last`);
+const slider = (container, activeClass, lastClass, typeBtn, mainImg) => {
+  let active = activeClass;
+  let last = lastClass;
   let next = active.nextElementSibling;
 
   if (!next) {
@@ -999,12 +1010,21 @@ const slider = (container, mainClass, typeBtn) => {
 
     next.classList.remove(['next']);
     next.classList.add('last');
+
+    if (mainImg) {
+      mainImg.src = active.children[0].src;
+    }
+
     return;
   }
 
   active.classList.add('last');
   last.classList.add('next');
   next.classList.add('active');
+
+  if (mainImg) {
+    mainImg.src = active.children[0].src;
+  }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (slider);
