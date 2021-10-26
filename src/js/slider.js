@@ -29,6 +29,7 @@ const slider = (container, activeClass, lastClass, typeBtn, mainImg) => {
     active.classList.add('last');
     last.classList.add('next');
     next.classList.add('active');
+
     if (mainImg) {
         mainImg.src = active.children[0].src;
     } 

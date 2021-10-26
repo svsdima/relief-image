@@ -49,28 +49,30 @@ const makingProjects = () => {
                             <div class="modal-main-img-wrapper">
                                 <img src="${img[0]}" class="modal-main-img" alt="main-img">
                             </div>
-                            <div class="modal-images">
-                                ${img.map((image, imageIndex) => {
-                                    let positionImage = 'next';
-                                    if (imageIndex === 1) {
-                                        positionImage = 'active';
-                                    }
-                                    if (imageIndex === projects.length - 1) {
-                                        positionImage = 'last';
-                                    }
-                                    return `
-                                        <div class="modal-image ${positionImage}" data-id="${project.id}${imageIndex + 1}" >
-                                            <img src="${image}" alt="${image}">
-                                        </div>
-                                    `;
-                                }).join("")}
+                            <div class="modal-images-wrapper">
+                                <div class="modal-images">
+                                    ${img.map((image, imageIndex) => {
+                                        let positionImage = 'next';
+                                        if (imageIndex === 0) {
+                                            positionImage = 'active';
+                                        }
+                                        if (imageIndex === projects.length - 1) {
+                                            positionImage = 'last';
+                                        }
+                                        return `
+                                            <div class="modal-image ${positionImage}" data-id="${project.id}${imageIndex + 1}" >
+                                                <img src="${image}" alt="${image}">
+                                            </div>
+                                        `;
+                                    }).join("")}
+                                </div>
+                                <button class="prev-image-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="next-image-btn">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
                             </div>
-                            <button class="prev-image-btn">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="next-image-btn">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
                         </div>
                         <div class="modal-info">
                             <h3 class="modal-info-title">${name}</h3>
@@ -119,21 +121,7 @@ const makingProjects = () => {
             });
         });
 
-        modalImages.forEach((images) => {
-            if (images.classList.contains('active')) {
-                let img = [...images.getElementsByClassName('modal-image')];
-                img.forEach((image) => {
-                    if (image.classList.contains('active')) {
-                        modalMainImg.src = image.firstElementChild.src
-                    }
-                })
-            }
-            if (images.classList.add('active')) {
-                console.log(nextImageBtn)
-            }
-        });
-
-        
+        // modal image slider
         modalProjectList.forEach( (project) => {
             if (project.classList.contains('active')) {
                 modalImage.forEach((image) => {
@@ -141,19 +129,12 @@ const makingProjects = () => {
                         modalProjectList.forEach((project) => {
                             if (project.classList.contains('active')) {
                                 let mainImg = project.getElementsByClassName('modal-main-img')[0];
-                                // let prevImageBtn = project.getElementsByClassName('prev-image-btn')[0];
-                                // let nextImageBtn = project.getElementsByClassName('next-image-btn')[0];
-                                // console.log(project)
-                                // prevImageBtn.addEventListener('click', () => {
-                                //     console.log(prevImageBtn)
-                                //     slider('.modal-images', '.modal-image', 'prev', mainImg)
-                                // });
+
                                 return mainImg.src = e.target.src;
                             }
                         });
                     });
                 });
-
                 // modal-image-btns event
                 prevImageBtns.forEach((prevImageBtn) => {
                     prevImageBtn.addEventListener('click', (e) => {
@@ -187,7 +168,6 @@ const makingProjects = () => {
         });
 
         let mainImg = getElement('.modal-main-img');
-        console.log(mainImg)
 
         prevProjectBtn.addEventListener('click', () => {
             slider(modalContent, getElement('.single-project.active'), getElement('.single-project.last'), 'prev');

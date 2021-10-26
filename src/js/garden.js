@@ -12,7 +12,7 @@ const garden = () => {
                 <li class="garden-link" data-id="${id}">${title}</li>
             `;
         }).join("");
-        btnsWrapper.innerHTML = btns;
+        
 
         const tabText = tabs.map((tab) => {
             const { id, info } = tab;
@@ -23,11 +23,34 @@ const garden = () => {
             `;
         }).join("");
 
-        tabsWrapper.innerHTML = tabText;
+        const btnsWithText = tabs.map((tab) => {
+            const { id, info, title } = tab;
+            return `
+                <li class="garden-link" data-id="${id}">${title}</li>
+                <ul class="garden-text" id="${id}">
+                    ${info.map((text) => `<li>${text}</li>`).join("")}
+                </ul>
+            `;
+        }).join("");
 
-        if (!btnsWrapper.firstElementChild.classList.contains('active')) {
-            btnsWrapper.firstElementChild.classList.add('active');
-            tabsWrapper.firstElementChild.classList.add('active');
+        if (window.screen.width > 800) {
+            btnsWrapper.innerHTML = btns;
+            tabsWrapper.innerHTML = tabText;
+
+            if (!btnsWrapper.firstElementChild.classList.contains('active')) {
+                btnsWrapper.firstElementChild.classList.add('active');
+                tabsWrapper.firstElementChild.classList.add('active');
+            }
+        }
+
+        if (window.screen.width <= 800) {
+            btnsWrapper.innerHTML = btnsWithText;
+
+            if (!btnsWrapper.firstElementChild.classList.contains('active')) {
+                btnsWrapper.firstElementChild.classList.add('active');
+                btnsWrapper.firstElementChild.nextElementSibling.classList.add('active');
+
+            }
         }
     }
     

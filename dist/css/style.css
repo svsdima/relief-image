@@ -154,7 +154,8 @@ a {
   background: transparent;
   border-color: transparent;
   cursor: pointer;
-  padding: 10px; }
+  padding: 10px;
+  z-index: 20; }
   .modal-overlay .close-btn i {
     font-size: 25px;
     color: #FFDF9E; }
@@ -225,10 +226,10 @@ a {
     color: #FFDF9E; }
 
 .prev-image-btn {
-  left: 0; }
+  left: -50px; }
 
 .next-image-btn {
-  right: 0; }
+  right: -50px; }
 
 .section-descr {
   margin: 40px 0;
@@ -4054,6 +4055,9 @@ template {
   .garden-main {
     display: grid;
     grid-template-columns: 1fr 2fr; }
+  .garden-item {
+    display: grid;
+    grid-template-columns: 1fr auto; }
   .garden-link {
     font-size: 18px;
     line-height: 25px;
@@ -4158,20 +4162,29 @@ template {
   gap: 20px;
   margin-top: 20px;
   position: relative; }
+  .modal-images-wrapper {
+    position: relative; }
 
 .modal-img-wrapper {
+  position: relative;
   max-width: 620px;
+  border-radius: 1px solid #000;
   max-height: 300px; }
 
 .modal-main-img {
   width: 100%;
-  height: 50%;
+  height: 100%;
   object-fit: cover;
   transition: all 0.2s ease-in; }
+  .modal-main-img-wrapper {
+    height: 170px; }
 
 .modal-image {
   cursor: pointer;
-  transition: all 0.2s ease-in; }
+  transition: all 0.2s ease-in;
+  box-shadow: 4px 4px 5px 2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%; }
   .modal-image img {
     transition: all 0.2s ease-in;
     width: 100%;
@@ -4233,14 +4246,14 @@ template {
   height: 100%;
   transition: all 0.2s ease-in;
   opacity: 0; }
-  .single-project.active {
-    z-index: 505;
-    opacity: 1;
-    transform: translateX(0); }
   .single-project.next {
     transform: translateX(100%); }
   .single-project.last {
     transform: translateX(-100%); }
+  .single-project.active {
+    z-index: 505;
+    opacity: 1;
+    transform: translateX(0); }
 
 .popup {
   z-index: -10;
@@ -4499,6 +4512,8 @@ template {
     grid-template-columns: repeat(2, 1fr); } }
 
 @media (max-width: 800px) {
+  .logo {
+    padding-top: 60px; }
   .header {
     margin-top: 0; }
     .header::after {
@@ -4588,7 +4603,7 @@ template {
   .modal-images {
     position: relative;
     width: 100%;
-    height: 100%; }
+    height: 150px; }
   .modal-image {
     position: absolute;
     top: 0;
@@ -4607,26 +4622,28 @@ template {
   .modal-wrapper {
     margin-top: 20px;
     grid-template-rows: 1fr 2fr; }
-  .modal-main-img {
-    display: none; }
   .modal-img-wrapper {
-    min-width: 400px; }
-  .garden {
-    margin: 0 10px; }
-    .garden-main {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr auto; }
-    .garden-list, .garden-text {
-      padding: 0; }
-      .garden-list li, .garden-text li {
-        font-size: 16px;
-        margin-bottom: 10px; }
-        .garden-list li::before, .garden-text li::before {
-          width: 6px;
-          height: 6px; }
-    .garden-link {
-      font-size: 18px;
-      padding: 20px 30px; }
+    height: 100%;
+    width: 100%; }
+  .modal-main-img-wrapper {
+    display: none; }
+  .modal-images-wrapper {
+    width: 100%;
+    height: 150px; }
+  .garden-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto; }
+  .garden-list, .garden-text {
+    padding: 20px 10px; }
+    .garden-list li, .garden-text li {
+      font-size: 16px;
+      margin-bottom: 10px; }
+      .garden-list li::before, .garden-text li::before {
+        width: 6px;
+        height: 6px; }
+  .garden-link {
+    font-size: 18px;
+    padding: 20px 30px; }
   .landscape-wrapper {
     grid-template-columns: repeat(1, 1fr); }
   .landscape .btn-landscape {

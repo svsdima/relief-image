@@ -81,7 +81,7 @@ gulp.task("watch", () => {
     });
 
     gulp.watch("./src/index.html", gulp.parallel("copy-html"));
-    gulp.watch("./src/data.js", gulp.parallel("copy-assets"));
+    gulp.watch("./src/data.js", gulp.parallel("build-js"));
     gulp.watch("./src/css/**/*.*", gulp.parallel("copy-assets"));
     gulp.watch("./src/img/**/*.*", gulp.parallel("copy-assets"));
     gulp.watch("./src/fonts/**/*.*", gulp.parallel("copy-assets"));
@@ -94,7 +94,7 @@ gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-sass", "buil
 gulp.task("prod", () => {
     gulp.src("./src/index.html")
         .pipe(gulp.dest(dist));
-        gulp.src("./src/data.js")
+    gulp.src("./src/data.js")
         .pipe(gulp.dest(dist));
     gulp.src("./src/img/**/*.*")
         .pipe(gulp.dest(dist + "/img"));

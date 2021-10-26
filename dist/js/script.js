@@ -322,7 +322,6 @@ const garden = () => {
                 <li class="garden-link" data-id="${id}">${title}</li>
             `;
     }).join("");
-    btnsWrapper.innerHTML = btns;
     const tabText = _data__WEBPACK_IMPORTED_MODULE_1__["tabs"].map(tab => {
       const {
         id,
@@ -334,11 +333,37 @@ const garden = () => {
                 </ul>
             `;
     }).join("");
-    tabsWrapper.innerHTML = tabText;
+    const btnsWithText = _data__WEBPACK_IMPORTED_MODULE_1__["tabs"].map(tab => {
+      const {
+        id,
+        info,
+        title
+      } = tab;
+      return `
+                <li class="garden-link" data-id="${id}">${title}</li>
+                <ul class="garden-text" id="${id}">
+                    ${info.map(text => `<li>${text}</li>`).join("")}
+                </ul>
+            `;
+    }).join("");
 
-    if (!btnsWrapper.firstElementChild.classList.contains('active')) {
-      btnsWrapper.firstElementChild.classList.add('active');
-      tabsWrapper.firstElementChild.classList.add('active');
+    if (window.screen.width > 800) {
+      btnsWrapper.innerHTML = btns;
+      tabsWrapper.innerHTML = tabText;
+
+      if (!btnsWrapper.firstElementChild.classList.contains('active')) {
+        btnsWrapper.firstElementChild.classList.add('active');
+        tabsWrapper.firstElementChild.classList.add('active');
+      }
+    }
+
+    if (window.screen.width <= 800) {
+      btnsWrapper.innerHTML = btnsWithText;
+
+      if (!btnsWrapper.firstElementChild.classList.contains('active')) {
+        btnsWrapper.firstElementChild.classList.add('active');
+        btnsWrapper.firstElementChild.nextElementSibling.classList.add('active');
+      }
     }
   };
 
@@ -369,6 +394,53 @@ const garden = () => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (garden);
+
+/***/ }),
+
+/***/ "./src/js/hideText.js":
+/*!****************************!*\
+  !*** ./src/js/hideText.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+
+
+const hideText = () => {
+  const btnDescr = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.section-descr .btn-descr');
+  const hideText = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.section-descr .hide-text');
+
+  if (window.screen.width > 800) {
+    hideText.classList.remove('close');
+    hideText.classList.add('open');
+  }
+
+  if (window.screen.width <= 800) {
+    hideText.classList.remove('open');
+    hideText.classList.add('close');
+  }
+
+  btnDescr.addEventListener('click', () => {
+    if (hideText.classList.contains('close')) {
+      hideText.classList.remove('close');
+      hideText.classList.add('open');
+      btnDescr.innerHTML = `
+                <i class="fas fa-chevron-up"></i>
+            `;
+    } else if (hideText.classList.contains('open')) {
+      hideText.classList.remove('open');
+      hideText.classList.add('close');
+      btnDescr.innerHTML = `
+                <i class="fas fa-chevron-down"></i>
+            `;
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (hideText);
 
 /***/ }),
 
@@ -478,6 +550,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _popup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./popup */ "./src/js/popup.js");
 /* harmony import */ var _reviews__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./reviews */ "./src/js/reviews.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* harmony import */ var _hideText__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./hideText */ "./src/js/hideText.js");
+
 
 
 
@@ -499,34 +573,7 @@ window.addEventListener('DOMContentLoaded', () => {
   Object(_garden__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_landscape__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_reviews__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  const btnDescr = Object(_utils__WEBPACK_IMPORTED_MODULE_9__["getElement"])('.section-descr .btn-descr');
-  const hideText = Object(_utils__WEBPACK_IMPORTED_MODULE_9__["getElement"])('.section-descr .hide-text');
-
-  if (window.screen.width > 800) {
-    hideText.classList.remove('close');
-    hideText.classList.add('open');
-  }
-
-  if (window.screen.width <= 800) {
-    hideText.classList.remove('open');
-    hideText.classList.add('close');
-  }
-
-  btnDescr.addEventListener('click', () => {
-    if (hideText.classList.contains('close')) {
-      hideText.classList.remove('close');
-      hideText.classList.add('open');
-      btnDescr.innerHTML = `
-                <i class="fas fa-chevron-up"></i>
-            `;
-    } else if (hideText.classList.contains('open')) {
-      hideText.classList.remove('open');
-      hideText.classList.add('close');
-      btnDescr.innerHTML = `
-                <i class="fas fa-chevron-down"></i>
-            `;
-    }
-  });
+  Object(_hideText__WEBPACK_IMPORTED_MODULE_10__["default"])();
 });
 
 /***/ }),
@@ -640,11 +687,12 @@ const makingProjects = () => {
                             <div class="modal-main-img-wrapper">
                                 <img src="${img[0]}" class="modal-main-img" alt="main-img">
                             </div>
-                            <div class="modal-images">
-                                ${img.map((image, imageIndex) => {
+                            <div class="modal-images-wrapper">
+                                <div class="modal-images">
+                                    ${img.map((image, imageIndex) => {
         let positionImage = 'next';
 
-        if (imageIndex === 1) {
+        if (imageIndex === 0) {
           positionImage = 'active';
         }
 
@@ -653,18 +701,19 @@ const makingProjects = () => {
         }
 
         return `
-                                        <div class="modal-image ${positionImage}" data-id="${project.id}${imageIndex + 1}" >
-                                            <img src="${image}" alt="${image}">
-                                        </div>
-                                    `;
+                                            <div class="modal-image ${positionImage}" data-id="${project.id}${imageIndex + 1}" >
+                                                <img src="${image}" alt="${image}">
+                                            </div>
+                                        `;
       }).join("")}
+                                </div>
+                                <button class="prev-image-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="next-image-btn">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
                             </div>
-                            <button class="prev-image-btn">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="next-image-btn">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
                         </div>
                         <div class="modal-info">
                             <h3 class="modal-info-title">${name}</h3>
@@ -712,35 +761,15 @@ const makingProjects = () => {
           }
         });
       });
-    });
-    modalImages.forEach(images => {
-      if (images.classList.contains('active')) {
-        let img = [...images.getElementsByClassName('modal-image')];
-        img.forEach(image => {
-          if (image.classList.contains('active')) {
-            modalMainImg.src = image.firstElementChild.src;
-          }
-        });
-      }
+    }); // modal image slider
 
-      if (images.classList.add('active')) {
-        console.log(nextImageBtn);
-      }
-    });
     modalProjectList.forEach(project => {
       if (project.classList.contains('active')) {
         modalImage.forEach(image => {
           image.addEventListener('click', e => {
             modalProjectList.forEach(project => {
               if (project.classList.contains('active')) {
-                let mainImg = project.getElementsByClassName('modal-main-img')[0]; // let prevImageBtn = project.getElementsByClassName('prev-image-btn')[0];
-                // let nextImageBtn = project.getElementsByClassName('next-image-btn')[0];
-                // console.log(project)
-                // prevImageBtn.addEventListener('click', () => {
-                //     console.log(prevImageBtn)
-                //     slider('.modal-images', '.modal-image', 'prev', mainImg)
-                // });
-
+                let mainImg = project.getElementsByClassName('modal-main-img')[0];
                 return mainImg.src = e.target.src;
               }
             });
@@ -782,7 +811,6 @@ const makingProjects = () => {
       ;
     });
     let mainImg = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-main-img');
-    console.log(mainImg);
     prevProjectBtn.addEventListener('click', () => {
       Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalContent, Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.last'), 'prev');
     });
@@ -903,7 +931,7 @@ const scroll = () => {
     const scrollHeight = window.pageYOffset;
     const navHeight = navbar.getBoundingClientRect().height;
 
-    if (scrollHeight > navHeight && window.screen.width > 800) {
+    if (scrollHeight > navHeight) {
       navbar.classList.add('fixed-nav');
       header.style.paddingTop = `${navHeight}px`;
     } else {
@@ -936,12 +964,13 @@ const scroll = () => {
 
       if (navHeight > 82) {
         position = position + containerHeight;
+        linksContainer.style.height = 0;
       }
 
       window.scrollTo({
         left: 0,
         top: position
-      }); // linksContainer.style.height = 0;
+      });
     });
   });
 };
@@ -963,7 +992,7 @@ const calcScroll = () => {
   div.style.overflowY = 'scroll';
   div.style.visibility = 'hidden';
   document.body.appendChild(div);
-  /* Вычисляем размер прокрутки */
+  /* Calculating the scroll size */
 
   let scrollWidth = div.offsetWidth - div.clientWidth;
   div.remove();

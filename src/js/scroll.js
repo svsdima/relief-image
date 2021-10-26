@@ -9,6 +9,7 @@ const scroll = () => {
     const navToggle = getElement('.nav-toggle');
     const header = getElement('.header');
 
+
     navToggle.addEventListener('click', () => {
         const containerHeight = linksContainer.getBoundingClientRect().height;
         const linksHeight = links.getBoundingClientRect().height;
@@ -25,7 +26,7 @@ const scroll = () => {
     window.addEventListener('scroll', () => {
         const scrollHeight = window.pageYOffset;
         const navHeight = navbar.getBoundingClientRect().height;
-        if (scrollHeight > navHeight && window.screen.width > 800) {
+        if (scrollHeight > navHeight) {
             navbar.classList.add('fixed-nav');
             header.style.paddingTop = `${navHeight}px`;
         } else {
@@ -61,13 +62,13 @@ const scroll = () => {
             }
             if (navHeight > 82) {
                 position = position + containerHeight;
+                linksContainer.style.height = 0;
             }
 
             window.scrollTo({
                 left: 0,
                 top: position,
             });
-            // linksContainer.style.height = 0;
         });
     });
 }
@@ -91,7 +92,7 @@ const calcScroll = () => {
 
     document.body.appendChild(div);
 
-    /* Вычисляем размер прокрутки */
+    /* Calculating the scroll size */
     let scrollWidth = div.offsetWidth - div.clientWidth;
     div.remove();
 
