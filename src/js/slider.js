@@ -21,7 +21,7 @@ const slider = (container, activeClass, lastClass, typeBtn, mainImg) => {
         next.classList.remove(['next']);
         next.classList.add('last');
         if (mainImg) {
-            mainImg.src = active.children[0].src;
+            mainImg.src = last.children[0].src;
         }     
         return;
     }
@@ -31,7 +31,7 @@ const slider = (container, activeClass, lastClass, typeBtn, mainImg) => {
     next.classList.add('active');
 
     if (mainImg) {
-        mainImg.src = active.children[0].src;
+        mainImg.src = next.children[0].src;
     } 
 }
 

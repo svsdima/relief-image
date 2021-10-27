@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/data.js":
-/*!*********************!*\
-  !*** ./src/data.js ***!
-  \*********************/
+/***/ "./src/js/data.js":
+/*!************************!*\
+  !*** ./src/js/data.js ***!
+  \************************/
 /*! exports provided: projects, tabs, landscape, reviews */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -174,123 +174,8 @@ const reviews = [{
 }, {
   name: 'Михаил',
   img: 'img/reviews/michael.jpg',
-  text: 'К компании relief image обратился в конце 2019 года, и летом 2020 все работы были закончены. Мы с семьей живём в пос. Правдинское озеро, хотели наш пустой и неровный участок превратить в уютный зеленый сад, с хорошим газоном, огородом и создать цветники у дома. Работой довольны, команда Надежды теперь занимается обслуживанием нашего участка.'
+  text: 'К компании relief image обратился в конце 2019 года, и летом 2020 все работы были закончены. Мы с семьей живём в пос. Правдинское озеро, хотели наш пустой и неровный участок превратить в уютный зеленый сад, с хорошим газоном, огородом и создать цветники у дома. Работой довольны, команда Надежды теперь занимается обслуживанием нашего участка.К компании relief image обратился в конце 2019 года, и летом 2020 все работы были закончены. Мы с семьей живём в пос. Правдинское озеро, хотели наш пустой и неровный участок превратить в уютный зеленый сад, с хорошим газоном, огородом и создать цветники у дома. Работой довольны, команда Надежды теперь занимается обслуживанием нашего участка.К компании relief image обратился в конце 2019 года, и летом 2020 все работы были закончены. Мы с семьей живём в пос. Правдинское озеро, хотели наш пустой и неровный участок превратить в уютный зеленый сад, с хорошим газоном, огородом и создать цветники у дома. Работой довольны, команда Надежды теперь занимается обслуживанием нашего участка.К компании relief image обратился в конце 2019 года, и летом 2020 все работы были закончены. Мы с семьей живём в пос. Правдинское озеро, хотели наш пустой и неровный участок превратить в уютный зеленый сад, с хорошим газоном, огородом и создать цветники у дома. Работой довольны, команда Надежды теперь занимается обслуживанием нашего участка.'
 }];
-
-
-/***/ }),
-
-/***/ "./src/js/createModal.js":
-/*!*******************************!*\
-  !*** ./src/js/createModal.js ***!
-  \*******************************/
-/*! exports provided: singleProject, ModalProject */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleProject", function() { return singleProject; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalProject", function() { return ModalProject; });
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./src/js/utils.js");
-/* harmony import */ var _data_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data.js */ "./src/data.js");
-
-
-const projectWrapper = document.querySelector('.projects-wrapper');
-
-const singleProject = () => {
-  let id = 1;
-  const project = _data_js__WEBPACK_IMPORTED_MODULE_1__["projects"].map(project => {
-    project.id = id++;
-    return project.innerHTML = `
-        <div class="project" data-id='${project.id}'>
-            <div class="project-img">
-                <img src=${project.img[0]}>
-            </div>
-            <div>
-                <span>${project.name}</span>
-            </div>
-        </div>
-        `;
-  }).join("");
-  projectWrapper.innerHTML = project;
-};
-
-function ModalProject(element) {
-  this.container = element;
-  this.list = [..._data_js__WEBPACK_IMPORTED_MODULE_1__["projects"]];
-  this.modalProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-overlay');
-  this.projectImg = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-main-img');
-  this.projectInfo = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-content');
-  this.projectName = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.project span');
-  this.projectList = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-info-list');
-  this.projectPrice = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.modal-price');
-  this.closeBtn = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.close-btn');
-  this.nextProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.next-project-btn');
-  this.prevProject = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.prev-project-btn'); // this.closeProject = this.closeProject.bind(this);
-  // container event
-
-  this.container.addEventListener('click', function (e) {
-    if (e.target.parentElement.parentElement.classList.contains('project') || e.target.parentElement.classList.contains('project')) {
-      this.openModal(e.target, this.list);
-    }
-  }.bind(this)); // console.log(this.container)
-}
-
-ModalProject.prototype.openModal = function (selectedProject, list) {
-  // this.setMainImage(selectedProject);
-  let id = 1;
-  this.projectInfo.innerHTML = list.map((project, projectIndex) => {
-    project.id = id++;
-    const {
-      name,
-      img,
-      list,
-      price
-    } = project;
-    let position = 'next';
-
-    if (projectIndex === 0) {
-      position = 'active';
-    }
-
-    if (projectIndex === _data_js__WEBPACK_IMPORTED_MODULE_1__["projects"].length - 1) {
-      position = 'last';
-    }
-
-    return `
-            <div class="single-project ${position}" data-id='${project.id}'>
-                <div class="line orange"><span class="line-name">${name}</span> <span class="line-full"></span></div>
-                    <div class="modal-wrapper">
-                        <div class="modal-img-wrapper">
-                            <img src="${img[0]}" class="modal-main-img" alt="main-img">
-                            <div class="modal-images">
-                                ${img.map((image, imageIndex) => `
-                                <div class="modal-main-img" data-id="${imageIndex}">
-                                    <img src="${image}" alt="${image}">
-                                </div>
-                                `).join("")}
-
-                            </div>
-                    </div>
-                    <div class="modal-info">
-                        <h3 class="modal-info-title">${name}</h3>
-                        <ul class="modal-info-list">
-                            ${list.map(e => `<li>${e}</li>`).join("")}
-                        </ul>
-                        <p>Сумма: <span class="modal-price">${price}</span> рублей</p>
-                    </div>
-                </div>
-            </div>
-        `;
-  }).join("");
-  this.modalProject.classList.add('open'); // this.closeProject.addEventListener('click', this.closeProject);
-};
-
-ModalProject.prototype.setMainImage = function (selectedImage) {
-  this.projectImg.src = selectedImage.src;
-  this.projectName.textContent = selectedImage.title;
-};
-
 
 
 /***/ }),
@@ -305,15 +190,13 @@ ModalProject.prototype.setMainImage = function (selectedImage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data */ "./src/data.js");
 
 
-
-const garden = () => {
+const garden = tabs => {
   const tabsLayout = () => {
     const tabsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.garden-info');
     const btnsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.garden-list');
-    const btns = _data__WEBPACK_IMPORTED_MODULE_1__["tabs"].map(tab => {
+    const btns = tabs.map(tab => {
       const {
         id,
         title
@@ -322,7 +205,7 @@ const garden = () => {
                 <li class="garden-link" data-id="${id}">${title}</li>
             `;
     }).join("");
-    const tabText = _data__WEBPACK_IMPORTED_MODULE_1__["tabs"].map(tab => {
+    const tabText = tabs.map(tab => {
       const {
         id,
         info
@@ -333,7 +216,7 @@ const garden = () => {
                 </ul>
             `;
     }).join("");
-    const btnsWithText = _data__WEBPACK_IMPORTED_MODULE_1__["tabs"].map(tab => {
+    const btnsWithText = tabs.map(tab => {
       const {
         id,
         info,
@@ -454,13 +337,11 @@ const hideText = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data */ "./src/data.js");
 
 
-
-const landscapeList = () => {
+const landscapeList = landscape => {
   const listWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.landscape-wrapper');
-  const list = _data__WEBPACK_IMPORTED_MODULE_1__["landscape"].map((item, index) => {
+  const list = landscape.map((item, index) => {
     const {
       title,
       img
@@ -540,20 +421,15 @@ const landscapeList = () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data */ "./src/data.js");
+/* harmony import */ var _data_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data.js */ "./src/js/data.js");
 /* harmony import */ var _toggleSidebar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toggleSidebar.js */ "./src/js/toggleSidebar.js");
 /* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./projects */ "./src/js/projects.js");
-/* harmony import */ var _createModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createModal */ "./src/js/createModal.js");
-/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
-/* harmony import */ var _garden__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./garden */ "./src/js/garden.js");
-/* harmony import */ var _landscape__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./landscape */ "./src/js/landscape.js");
-/* harmony import */ var _popup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./popup */ "./src/js/popup.js");
-/* harmony import */ var _reviews__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./reviews */ "./src/js/reviews.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _hideText__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./hideText */ "./src/js/hideText.js");
-
-
-
+/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
+/* harmony import */ var _garden__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./garden */ "./src/js/garden.js");
+/* harmony import */ var _landscape__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./landscape */ "./src/js/landscape.js");
+/* harmony import */ var _popup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./popup */ "./src/js/popup.js");
+/* harmony import */ var _reviews__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./reviews */ "./src/js/reviews.js");
+/* harmony import */ var _hideText__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./hideText */ "./src/js/hideText.js");
 
 
 
@@ -564,16 +440,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  Object(_popup__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  Object(_scroll__WEBPACK_IMPORTED_MODULE_4__["scroll"])();
-  Object(_projects__WEBPACK_IMPORTED_MODULE_2__["default"])(); // projectEvent();
-  // singleProject();
-  // const modal = new ModalProject(getElement('.about-projects'))
-
-  Object(_garden__WEBPACK_IMPORTED_MODULE_5__["default"])();
-  Object(_landscape__WEBPACK_IMPORTED_MODULE_6__["default"])();
-  Object(_reviews__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_hideText__WEBPACK_IMPORTED_MODULE_10__["default"])();
+  Object(_popup__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_scroll__WEBPACK_IMPORTED_MODULE_3__["scroll"])();
+  Object(_projects__WEBPACK_IMPORTED_MODULE_2__["default"])(_data_js__WEBPACK_IMPORTED_MODULE_0__["projects"]);
+  Object(_garden__WEBPACK_IMPORTED_MODULE_4__["default"])(_data_js__WEBPACK_IMPORTED_MODULE_0__["tabs"]);
+  Object(_landscape__WEBPACK_IMPORTED_MODULE_5__["default"])(_data_js__WEBPACK_IMPORTED_MODULE_0__["landscape"]);
+  Object(_reviews__WEBPACK_IMPORTED_MODULE_7__["default"])(_data_js__WEBPACK_IMPORTED_MODULE_0__["reviews"]);
+  Object(_hideText__WEBPACK_IMPORTED_MODULE_8__["default"])();
 });
 
 /***/ }),
@@ -625,19 +498,17 @@ const popup = () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data */ "./src/data.js");
-/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
+/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
 
 
 
 
-
-const makingProjects = () => {
-  const projectsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.projects-wrapper');
-  const modalContent = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-content');
-  const modalOverlay = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-overlay');
+const makingProjects = projects => {
+  const projectsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.projects-wrapper');
+  const modalContent = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-content');
+  const modalOverlay = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-overlay');
 
   const createProject = async projects => {
     let id = 1;
@@ -728,18 +599,18 @@ const makingProjects = () => {
     }).join("");
     const projectList = document.querySelectorAll('.project');
     const modalProjectList = document.querySelectorAll('.single-project');
-    const closeBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-overlay .close-btn');
-    const nextProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.next-project-btn');
-    const prevProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.prev-project-btn');
-    const last = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.last');
-    const active = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.active');
+    const closeBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-overlay .close-btn');
+    const nextProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.next-project-btn');
+    const prevProjectBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.prev-project-btn');
+    const last = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.last');
+    const active = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.active');
     const modalImages = document.querySelectorAll('.modal-images');
     const modalImage = document.querySelectorAll('.modal-image');
     const prevImageBtns = document.querySelectorAll('.prev-image-btn');
     const nextImageBtns = document.querySelectorAll('.next-image-btn');
     await projectList.forEach(async singleProject => {
       await singleProject.addEventListener('click', function (e) {
-        Object(_scroll__WEBPACK_IMPORTED_MODULE_1__["offScroll"])();
+        Object(_scroll__WEBPACK_IMPORTED_MODULE_0__["offScroll"])();
         modalProjectList.forEach(project => {
           project.classList.remove('active');
           project.classList.remove('next');
@@ -770,6 +641,28 @@ const makingProjects = () => {
             modalProjectList.forEach(project => {
               if (project.classList.contains('active')) {
                 let mainImg = project.getElementsByClassName('modal-main-img')[0];
+                let images = project.querySelectorAll('.modal-image');
+                images.forEach(image => {
+                  image.classList.remove('active');
+                  image.classList.remove('next');
+                  image.classList.remove('last');
+                });
+                let active = e.target.parentElement;
+                let next = active.nextElementSibling;
+
+                if (!next) {
+                  next = images[0];
+                }
+
+                let last = active.previousElementSibling;
+
+                if (!last) {
+                  last = images[images.length - 1];
+                }
+
+                active.classList.add('active');
+                next.classList.add('next');
+                last.classList.add('last');
                 return mainImg.src = e.target.src;
               }
             });
@@ -784,7 +677,7 @@ const makingProjects = () => {
                 let modalImageActive = project.childNodes[3].children[0].children[1].querySelector('.modal-image.active');
                 let modalImageLast = project.childNodes[3].children[0].children[1].querySelector('.modal-image.last');
                 let mainImg = project.childNodes[3].children[0].querySelector('.modal-main-img');
-                Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalWrapper, modalImageActive, modalImageLast, 'prev', mainImg);
+                Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(modalWrapper, modalImageActive, modalImageLast, 'prev', mainImg);
               }
 
               ;
@@ -799,7 +692,7 @@ const makingProjects = () => {
                 let modalImageActive = project.childNodes[3].children[0].children[1].querySelector('.modal-image.active');
                 let modalImageLast = project.childNodes[3].children[0].children[1].querySelector('.modal-image.last');
                 let mainImg = project.childNodes[3].children[0].querySelector('.modal-main-img');
-                Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalWrapper, modalImageActive, modalImageLast, '', mainImg);
+                Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(modalWrapper, modalImageActive, modalImageLast, '', mainImg);
               }
 
               ;
@@ -810,21 +703,21 @@ const makingProjects = () => {
 
       ;
     });
-    let mainImg = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.modal-main-img');
+    let mainImg = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.modal-main-img');
     prevProjectBtn.addEventListener('click', () => {
-      Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalContent, Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.last'), 'prev');
+      Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(modalContent, Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.single-project.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.single-project.last'), 'prev');
     });
     nextProjectBtn.addEventListener('click', () => {
-      Object(_slider__WEBPACK_IMPORTED_MODULE_3__["default"])(modalContent, Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_2__["getElement"])('.single-project.last'));
+      Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(modalContent, Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.single-project.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getElement"])('.single-project.last'));
     });
     closeBtn.addEventListener('click', () => {
       modalOverlay.classList.remove('open');
-      Object(_scroll__WEBPACK_IMPORTED_MODULE_1__["onScroll"])();
+      Object(_scroll__WEBPACK_IMPORTED_MODULE_0__["onScroll"])();
     });
   };
 
-  createProject(_data__WEBPACK_IMPORTED_MODULE_0__["projects"]);
-  modalProject(_data__WEBPACK_IMPORTED_MODULE_0__["projects"]);
+  createProject(projects);
+  modalProject(projects);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (makingProjects);
@@ -841,18 +734,16 @@ const makingProjects = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data */ "./src/data.js");
-/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
+/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
 
 
 
-
-const reviewsSection = () => {
+const reviewsSection = reviews => {
   const reviewsWrapper = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.reviews-list');
   const nextReviewBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.next-reviews-btn');
   const prevReviewBtn = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.prev-reviews-btn'); // setSlides
 
-  reviewsWrapper.innerHTML = _data__WEBPACK_IMPORTED_MODULE_1__["reviews"].map((review, slideIndex) => {
+  reviewsWrapper.innerHTML = reviews.map((review, slideIndex) => {
     const {
       img,
       name,
@@ -865,7 +756,7 @@ const reviewsSection = () => {
       position = 'active';
     }
 
-    if (slideIndex === _data__WEBPACK_IMPORTED_MODULE_1__["reviews"].length - 1) {
+    if (slideIndex === reviews.length - 1) {
       position = 'last';
     }
 
@@ -882,10 +773,10 @@ const reviewsSection = () => {
       `;
   }).join("");
   prevReviewBtn.addEventListener('click', () => {
-    Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(reviewsWrapper, Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.last'), 'prev');
+    Object(_slider__WEBPACK_IMPORTED_MODULE_1__["default"])(reviewsWrapper, Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.last'), 'prev');
   });
   nextReviewBtn.addEventListener('click', () => {
-    Object(_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(reviewsWrapper, Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.last'));
+    Object(_slider__WEBPACK_IMPORTED_MODULE_1__["default"])(reviewsWrapper, Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.active'), Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getElement"])('.review.last'));
   });
 };
 
@@ -1041,7 +932,7 @@ const slider = (container, activeClass, lastClass, typeBtn, mainImg) => {
     next.classList.add('last');
 
     if (mainImg) {
-      mainImg.src = active.children[0].src;
+      mainImg.src = last.children[0].src;
     }
 
     return;
@@ -1052,7 +943,7 @@ const slider = (container, activeClass, lastClass, typeBtn, mainImg) => {
   next.classList.add('active');
 
   if (mainImg) {
-    mainImg.src = active.children[0].src;
+    mainImg.src = next.children[0].src;
   }
 };
 

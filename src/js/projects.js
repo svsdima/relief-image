@@ -1,10 +1,9 @@
-import { projects } from "../data";
 import { onScroll, offScroll } from "./scroll";
 import { getElement } from "./utils";
 import slider from './slider';
 
 
-const makingProjects = () => {
+const makingProjects = (projects) => {
     const projectsWrapper = getElement('.projects-wrapper');
     const modalContent = getElement('.modal-content');
     const modalOverlay = getElement('.modal-overlay');
@@ -129,7 +128,24 @@ const makingProjects = () => {
                         modalProjectList.forEach((project) => {
                             if (project.classList.contains('active')) {
                                 let mainImg = project.getElementsByClassName('modal-main-img')[0];
-
+                                let images = project.querySelectorAll('.modal-image');
+                                images.forEach((image) => {
+                                    image.classList.remove('active');
+                                    image.classList.remove('next');
+                                    image.classList.remove('last');
+                                });
+                                let active = e.target.parentElement;
+                                let next = active.nextElementSibling;
+                                if (!next) {
+                                    next = images[0];
+                                }
+                                let last = active.previousElementSibling;
+                                if (!last) {
+                                    last = images[images.length - 1];
+                                }
+                                active.classList.add('active');
+                                next.classList.add('next');
+                                last.classList.add('last');
                                 return mainImg.src = e.target.src;
                             }
                         });

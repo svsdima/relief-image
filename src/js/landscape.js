@@ -1,7 +1,6 @@
 import { getElement } from "./utils";
-import { landscape } from '../data';
 
-const landscapeList = () => {
+const landscapeList = (landscape) => {
     const listWrapper = getElement('.landscape-wrapper');
 
     const list = landscape.map((item, index) => {

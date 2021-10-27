@@ -1,7 +1,6 @@
 import { getElement } from "./utils";
-import { tabs } from '../data';
 
-const garden = () => {
+const garden = (tabs) => {
     const tabsLayout = () => {
         const tabsWrapper = getElement('.garden-info');
         const btnsWrapper = getElement('.garden-list');

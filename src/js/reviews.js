@@ -1,8 +1,7 @@
 import { getElement } from "./utils";
-import { reviews } from '../data';
 import slider from './slider';
 
-const reviewsSection = () => {
+const reviewsSection = (reviews) => {
     const reviewsWrapper = getElement('.reviews-list');
     const nextReviewBtn = getElement('.next-reviews-btn');
     const prevReviewBtn = getElement('.prev-reviews-btn');
