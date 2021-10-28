@@ -16,7 +16,7 @@ body {
   flex-direction: column; }
 
 .main {
-  flex: 1 1 auto; }
+  flex: 1 1 auto; }
 
 img {
   display: inline-block;
@@ -30,7 +30,7 @@ a {
 
 .container {
   max-width: 1060px;
-  margin: 0 auto; }
+  margin: 0 auto; }
 
 .btn {
   margin-top: 15px;
@@ -43,7 +43,7 @@ a {
   font-size: 24px;
   line-height: 28px;
   color: #FFDF9E;
-  padding: 15px 75px;
+  padding: 15px 75px;
   cursor: pointer;
   transition: all 0.2s ease-in; }
   .btn:hover {
@@ -52,7 +52,7 @@ a {
 
 .btn-form {
   margin-top: 0;
-  padding: 4px 12px;
+  padding: 4px 12px;
   font-weight: 300;
   font-size: 15px;
   line-height: 16px; }
@@ -74,7 +74,7 @@ a {
     align-items: center;
     background: #FFDF9E;
     border-radius: 50px;
-    margin: 10px 0;
+    margin: 10px 0;
     padding: 5px; }
     .social-icon i {
       font-size: 20px;
@@ -147,7 +147,8 @@ a {
       bottom: -4px;
       content: url("../img/logo-line-orange.svg"); }
 
-.modal-overlay .close-btn {
+.modal-overlay
+.close-btn {
   position: absolute;
   top: 25px;
   right: 25px;
@@ -156,11 +157,13 @@ a {
   cursor: pointer;
   padding: 10px;
   z-index: 20; }
-  .modal-overlay .close-btn i {
+  .modal-overlay
+.close-btn i {
     font-size: 25px;
     color: #FFDF9E; }
 
-.popup .close-btn {
+.popup
+.close-btn {
   position: absolute;
   top: 25px;
   right: 25px;
@@ -168,7 +171,8 @@ a {
   border-color: transparent;
   cursor: pointer;
   padding: 10px; }
-  .popup .close-btn i {
+  .popup
+.close-btn i {
     font-size: 25px;
     color: #FFDF9E; }
 
@@ -177,7 +181,6 @@ a {
   position: absolute;
   z-index: 20;
   top: 50%;
-  right: 0;
   transform: translateY(-50%);
   background: transparent;
   border-color: transparent;
@@ -187,6 +190,9 @@ a {
   .prev-project-btn i {
     font-size: 50px;
     color: #FFDF9E; }
+
+.next-project-btn {
+  right: 0; }
 
 .prev-project-btn {
   left: 0; }
@@ -232,7 +238,7 @@ a {
   right: -50px; }
 
 .section-descr {
-  margin: 40px 0;
+  margin: 40px 0;
   background: rgba(87, 82, 73, 0.98);
   padding: 20px;
   text-align: left; }
@@ -4492,7 +4498,7 @@ template {
   .nav-link {
     margin-right: 60px; }
   .container {
-    padding: 0 20px; } }
+    padding: 0 20px; } }
 
 @media (max-width: 1060px) {
   .nav-link {
@@ -4507,7 +4513,7 @@ template {
     grid-template-columns: repeat(4, 1fr); }
   .modal-img-wrapper {
     max-width: 450px;
-    margin: 0 auto; }
+    margin: 0 auto; }
   .modal-main-img-wrapper {
     height: 200px; }
   .modal-info {
@@ -4515,7 +4521,7 @@ template {
     .modal-info-title {
       display: none; }
     .modal-info-list {
-      margin: 20px 0;
+      margin: 20px 0;
       height: 300px; }
   .landscape-wrapper {
     grid-template-columns: repeat(2, 1fr); } }
@@ -4536,7 +4542,7 @@ template {
     .header .container {
       height: 100%; }
     .header .logo {
-      margin: 0 auto;
+      margin: 0 auto;
       text-align: center; }
     .header-wrapper {
       grid-template-columns: 1fr;
@@ -4548,7 +4554,7 @@ template {
       grid-template-columns: repeat(3, 1fr);
       justify-items: center; }
       .header .social-icon {
-        margin: 0 10px; }
+        margin: 0 10px; }
   .popup-wrapper {
     width: 100%;
     height: 100%;
@@ -4600,7 +4606,7 @@ template {
       margin-right: 0;
       font-size: 16px;
       margin-bottom: 10px;
-      padding: 15px 0;
+      padding: 15px 0;
       color: #FFDF9E; }
       .navbar .nav-link::before {
         background: #FFDF9E; }
@@ -4615,7 +4621,7 @@ template {
     grid-template-areas: "first first" "second third" "second third"; }
   .modal-content {
     overflow: inherit;
-    margin: 20px 80px; }
+    margin: 20px 80px; }
   .modal-images {
     position: relative;
     width: 100%;
@@ -4659,7 +4665,7 @@ template {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto; }
   .garden-list, .garden-text {
-    padding: 20px 10px; }
+    padding: 20px 10px; }
     .garden-list li, .garden-text li {
       font-size: 16px;
       margin-bottom: 10px; }
@@ -4668,7 +4674,7 @@ template {
         height: 6px; }
   .garden-link {
     font-size: 18px;
-    padding: 20px 30px; }
+    padding: 20px 30px; }
   .landscape-wrapper {
     grid-template-columns: repeat(1, 1fr); }
   .landscape .btn-landscape {
@@ -4717,8 +4723,6 @@ template {
   .next-project-btn,
   .prev-project-btn {
     height: 20%; }
-  .prev-project-btn {
-    right: 0; }
   .footer-wrapper {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -4734,13 +4738,13 @@ template {
 
 @media (max-width: 450px) {
   .btn-popup {
-    padding: 15px 50px; } }
+    padding: 15px 50px; } }
 
 @media (max-width: 425px) {
   .popup-form {
-    padding: 0 20px; }
+    padding: 0 20px; }
   .modal-content {
-    margin: 20px 50px; }
+    margin: 20px 50px; }
   .header-left h1 {
     font-size: 32px; }
   .projects {
@@ -4757,13 +4761,13 @@ template {
   .header-left h1 {
     font-size: 30px; }
   .btn-popup {
-    padding: 15px 20px; }
+    padding: 15px 20px; }
   .garden-link {
-    padding: 20px 10px; }
+    padding: 20px 10px; }
     .garden-link.active::before {
       width: 10px; }
   .reviews .review-text {
-    padding: 0 60px; } }
+    padding: 0 60px; } }
 
 @media (max-width: 320px) {
   .header .logo {

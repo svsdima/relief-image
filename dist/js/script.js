@@ -780,7 +780,7 @@ const reviewsSection = reviews => {
   });
   const allText = document.querySelectorAll('.review-text');
   allText.forEach(text => {
-    text.addEventListener('touchstart', e => {
+    text.addEventListener('touchmove', e => {
       if (e.target) {
         document.body.style.overflow = "hidden";
       }
