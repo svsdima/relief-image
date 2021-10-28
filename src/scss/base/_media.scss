@@ -377,10 +377,12 @@
   .prev-reviews-btn {
     height: 100%;
     padding: 20px;
-    right: 0;
     i {
       color: $btn;
     }
+  }
+  .next-reviews-btn {
+    right: 0;
   }
   .prev-reviews-btn {
     left: 0;

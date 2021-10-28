@@ -202,7 +202,6 @@ a {
   position: absolute;
   z-index: 20;
   top: 40%;
-  right: 30%;
   transform: translateY(-50%);
   background: transparent;
   border-color: transparent;
@@ -212,6 +211,9 @@ a {
   .prev-reviews-btn i {
     font-size: 50px;
     color: #34642C; }
+
+.next-reviews-btn {
+  right: 30%; }
 
 .prev-reviews-btn {
   left: 30%; }
@@ -4707,11 +4709,12 @@ template {
   .next-reviews-btn,
   .prev-reviews-btn {
     height: 100%;
-    padding: 20px;
-    right: 0; }
+    padding: 20px; }
     .next-reviews-btn i,
     .prev-reviews-btn i {
       color: #FF7E35; }
+  .next-reviews-btn {
+    right: 0; }
   .prev-reviews-btn {
     left: 0; }
   .next-image-btn,

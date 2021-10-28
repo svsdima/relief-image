@@ -257,7 +257,6 @@ a {
   position: absolute;
   z-index: 20;
   top: 40%;
-  right: 30%;
   transform: translateY(
     -50%
   );
@@ -269,6 +268,9 @@ a {
     font-size: 50px;
     color: $line;
   }
+}
+.next-reviews-btn {
+  right: 30%;
 }
 .prev-reviews-btn {
   left: 30%;
