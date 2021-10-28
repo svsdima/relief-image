@@ -199,7 +199,7 @@
         &-images {
             position: relative;
             width: 100%;
-            height: 150px;
+            height: 200px;
         }
         &-image {
             position: absolute;
@@ -212,6 +212,10 @@
             &.active {
                 opacity: 1;
                 transform: translateX(0);
+                img {
+                    border: 2px solid rgba($main-color, 0.8);
+                    border-radius: 10px;
+                }
             }
             &.next {
                 transform: translateX(100%);
@@ -238,7 +242,15 @@
         }
         &-images-wrapper {
             width: 100%;
-            height: 150px;
+            height: 200px;
+        }
+    }
+    .single-project {
+        .line {
+            padding-top: 5px;
+        }
+        .orange {
+            margin: 0;
         }
     }
     .garden {
@@ -317,6 +329,21 @@
     }
     .prev-reviews-btn {
         left: 0;
+    }
+    .next-image-btn,
+    .prev-image-btn {
+        height: 100%;
+        right: 0;
+    }
+    .prev-image-btn {
+        left: 0;
+    }
+    .next-project-btn,
+    .prev-project-btn {
+        height: 20%;
+    }
+    .prev-project-btn {
+        right: 0;
     }
     .footer {
         &-wrapper {

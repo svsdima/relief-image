@@ -37,6 +37,22 @@ const reviewsSection = (reviews) => {
     nextReviewBtn.addEventListener('click', () => {
         slider(reviewsWrapper, getElement('.review.active'), getElement('.review.last'));
     });
+
+    const allText = document.querySelectorAll('.review-text');
+
+    allText.forEach((text) => {
+        text.addEventListener('touchstart', (e) => {
+            if (e.target) {
+                document.body.style.overflow = "hidden";
+            }
+        });
+        text.addEventListener('touchend', (e) => {
+            console.log(e.target)
+            if (e.target) {
+                document.body.style.overflow = "";
+            }
+        });
+    });
 };
 
 export default reviewsSection;
